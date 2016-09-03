@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+
+<title>ffmpeg - How to put border around video to prevent clipping of content - Super User</title>
+    <link rel="shortcut icon" href="//cdn.sstatic.net/Sites/superuser/img/favicon.ico?v=29b26120d2c5">
+    <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/Sites/superuser/img/apple-touch-icon.png?v=0ad5b7a83e49">
+    <link rel="search" type="application/opensearchdescription+xml" title="Super User" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@super_user" />
+    <meta name="twitter:domain" content="superuser.com"/>
+    <meta property="og:type" content="website" />    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/Sites/superuser/img/apple-touch-icon@2.png?v=e869e4459439&a" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to put border around video to prevent clipping of content" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="My TV is old and for some reason clips some content off of the left edge. I&#39;m trying to show a video on it in which the left edge is vital to the presentation.
+
+Is there some way (with iMovie/ffmpe..." />
+    <meta property="og:url" content="http://superuser.com/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content"/>
+    <link rel="canonical" href="http://superuser.com/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content" />
+
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdn.sstatic.net/Js/stub.en.js?v=32e04c326046"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/Sites/superuser/all.css?v=20d919d89abb">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to put border around video to prevent clipping of content&#39;" href="/feeds/question/869117">
+            <meta name="twitter:app:country" content="US" />
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:iphone" content="871299723" />
+            <meta name="twitter:app:url:iphone" content="se-zaphod://superuser.com/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content" />
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:ipad" content="871299723" />
+            <meta name="twitter:app:url:ipad" content="se-zaphod://superuser.com/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content" />
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://superuser.com/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:4,shownCommentCount:4,highlightColor:'#BEB013',backgroundColor:'#FFF',questionId:869117});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('3', '869117');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToReputationNotifications('3');
+                StackExchange.realtime.subscribeToTopBarNotifications('3');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1469928428,"routeName":"Questions/Show","site":{"name":"Super User","description":"Q&A for computer enthusiasts and power users","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LcDNwYAAAAAAG_X1rC8kTtLBP6XS2Ym1N0n9kSY","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":3,"enableInsertDocLinkDialog":false,"enableSocialMediaInSharePopup":true},"user":{"fkey":"65dbe831b0605ff761324e035a6593e8","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"realtime":{"newest":true,"active":true,"tagged":true}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true},"tags":{},"flags":{},"snippets":{"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"218b927128e3","js/moderator.en.js":"4c6b90e021fb","js/full-anon.en.js":"2d7ee00d3ce2","js/full.en.js":"62d83cf8ef8e","js/wmd.en.js":"ab44f28d3ba1","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"a7228f24adb0","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"9c6df10dabc4","js/tageditornew.en.js":"3a350acd9f03","js/inline-tag-editing.en.js":"4fa1a4a3339e","js/revisions.en.js":"47de10a8358f","js/review.en.js":"dc928fe127c5","js/tagsuggestions.en.js":"bc2c996faeda","js/post-validation.en.js":"9bf262e5e155","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"da957efa6725","js/keyboard-shortcuts.en.js":"c7d1d11f7223","js/external-editor.en.js":"34f78799ad2d"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+</head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    
+        <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        <iframe id="adzerk-user-match" width="0" height="0" frameborder="0" scrolling="no" onload="window.AUMIframeDone=true"
+                src="https://ssum-sec.casalemedia.com/usermatch?s=183712&amp;cb=https%3A%2F%2Fengine.adzerk.net%2Fudb%2F22%2Fsync%2Fi.gif%3FpartnerId%3D1%26userId%3D"
+                style="display: none;" marginheight="0" marginwidth="0"></iframe>
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="//superuser.com">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://blog.superuser.com/" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:7 })"
+>blog</a>
+                    <a href="http://chat.stackexchange.com?tab=site&amp;host=superuser.com" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+            </div>
+
+
+
+
+    <a href="//superuser.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="3"
+       data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-superuser" title="Super User"></div>
+        Super User
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.superuser.com"
+       class="site-link js-gps-track"
+       data-id="77"
+       data-gps-track="
+            site.switch({ target_site:77, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-superusermeta" title="Meta Super User"></div>
+        Meta Super User
+    </a>
+
+                </li>
+        </ul>
+    </div>
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://superuser.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117%2fhow-to-put-border-around-video-to-prevent-clipping-of-content" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a> or <a href="https://superuser.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117%2fhow-to-put-border-around-video-to-prevent-clipping-of-content" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a> to customize your list.
+            </div>
+    </div>
+    <div class="header">
+        <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+                <a href="//stackexchange.com"
+                   class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track"
+                   data-gps-track="site_switcher.show"
+                   title="A list of all 158 Stack Exchange sites">
+                    <span class="hidden-text">Stack Exchange</span>
+                </a>
+
+    <a href="#"
+       class="topbar-icon icon-inbox yes-hover js-inbox-button"
+       title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#"
+       class="topbar-icon icon-achievements yes-hover js-achievements-button "
+       data-unread-class=""
+       title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://superuser.com/users/signup?ssrc=head&returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117%2fhow-to-put-border-around-video-to-prevent-clipping-of-content" class="login-link">sign up</a>
+                                <a href="https://superuser.com/users/login?ssrc=head&returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117%2fhow-to-put-border-around-video-to-prevent-clipping-of-content" class="login-link">log in</a>
+
+                            <a href="/tour">tour</a>
+        <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+            help
+            <span class="triangle"></span>
+        </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="//meta.superuser.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+                                            </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="/" >
+                    Super User
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li>
+                                                <li><a id="nav-tags" href="/tags">Tags</a></li>
+                        <li><a id="nav-users" href="/users">Users</a></li>
+                        <li><a id="nav-badges" href="/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion"  href="/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="//cdn.sstatic.net/Sites/superuser/img/apple-touch-icon.png?v=0ad5b7a83e49">
+
+
+    <div id="herobox">
+        <div id="hero-content">
+                <div id="close"><a title="click to minimize">_</a></div>
+            <div id="blurb">
+                Super User is a question and answer site for computer enthusiasts and power users. Join them; it only takes a minute:
+                <br/>
+                <br/>
+                <a href="/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117%2fhow-to-put-border-around-video-to-prevent-clipping-of-content" id="tell-me-more" class="button">Sign up</a>
+            </div>
+            <div id="desc">
+                <b>Here&#39;s how it works:</b>
+                <ol id="hiw">
+                    <li id="q">Anybody can ask a question
+                    </li>
+                    <li id="an">Anybody can answer
+                    </li>
+                    <li id="b">The best answers are voted up and rise to the top
+                    </li>
+                </ol>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        $('#herobox #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content" class="question-hyperlink">How to put border around video to prevent clipping of content</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="869117"  id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,0,"adzerk1997181206",4).enableDynamicSiteSelection().setZone(29); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1997181206"></div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="869117">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b></b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>My TV is old and for some reason clips some content off of the left edge. I'm trying to show a video on it in which the left edge is vital to the presentation.</p>
+
+<p>Is there some way (with iMovie/ffmpeg/Gimp etc) that I can shrink the video size and surround it with a thick black border, so that this border is clipped when viewing it on my TV, rather than the content?</p>
+
+<p>In other words, I want to go from this: </p>
+
+<p><img src="http://i.stack.imgur.com/22kAm.jpg" alt="enter image description here"></p>
+
+<p>to this:</p>
+
+<p><img src="http://i.stack.imgur.com/1fH0n.png" alt="enter image description here"></p>
+
+<p>But I want to do that with a video (in mp4 format).</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/video" class="post-tag" title="show questions tagged &#39;video&#39;" rel="tag">video</a> <a href="/questions/tagged/ffmpeg" class="post-tag" title="show questions tagged &#39;ffmpeg&#39;" rel="tag">ffmpeg</a> <a href="/questions/tagged/gimp" class="post-tag" title="show questions tagged &#39;gimp&#39;" rel="tag">gimp</a> <a href="/questions/tagged/aspect-ratio" class="post-tag" title="show questions tagged &#39;aspect-ratio&#39;" rel="tag">aspect-ratio</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/869117" title="short permalink to this question" class="short-link" id="link-post-869117">share</a><span class="lsep">|</span><a href="/posts/869117/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2015-01-25 03:25:50Z" class="relativetime">Jan 25 '15 at 3:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/320092/amadeusdrzaius"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a5563b966d383529a65612e6590f957f?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/320092/amadeusdrzaius">AmadeusDrZaius</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">112</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-869117" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1155361" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Is it an option to just adjust the size any way desired during playback? that way the video does not have to be re-encoded. What is the OS that it is being played back with? or is this dvd bluray or something?</span>
+                    &ndash;&nbsp;<a href="/users/98855/psycogeek"
+                       title="6,296 reputation"
+                       class="comment-user">Psycogeek</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 03:54:53Z" class="relativetime-clean">Jan 25 '15 at 3:54</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1155376" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The file is being accessed over the DLNA protocol. I&#39;m using the <a href="https://plex.tv/" rel="nofollow">Plex</a> server to serve the files to my Sony media player (a TV top box) over Wi-Fi. Unfortunately, my TV does not have a setting for scaling or moving the video, and the only setting that my SONY player has is to fix the aspect ratio to 4:3.</span>
+                    &ndash;&nbsp;<a href="/users/320092/amadeusdrzaius"
+                       title="112 reputation"
+                       class="comment-user owner">AmadeusDrZaius</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 04:06:21Z" class="relativetime-clean">Jan 25 '15 at 4:06</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1155386" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Can you give some more information about the TV? The type and model would really help. Also, tell us about your video card please.</span>
+                    &ndash;&nbsp;<a href="/users/145045/krowe"
+                       title="4,166 reputation"
+                       class="comment-user">krowe</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 04:29:28Z" class="relativetime-clean">Jan 25 '15 at 4:29</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1155389" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Sorry dont know FFMpeg but in virtualDub and other video programs it is often found in the resize options, as you resize the video and plop it on the specified size &quot;canvas&quot; , Framing options.</span>
+                    &ndash;&nbsp;<a href="/users/98855/psycogeek"
+                       title="6,296 reputation"
+                       class="comment-user">Psycogeek</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 04:47:25Z" class="relativetime-clean">Jan 25 '15 at 4:47</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-869117" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>        </table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/869117/how-to-put-border-around-video-to-prevent-clipping-of-content?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="869139"></a>
+<div id="answer-869139" class="answer accepted-answer" data-answerid="869139"  itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="869139">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>Method 1: Fixed size scale with padding:</strong></p>
+
+<pre><code>ffmpeg -i inputfile.mov -filter_complex 'scale=578:462, pad=720:576:71:57' outputfile.mp4
+</code></pre>
+
+<p>This assumes SD PAL size input and output. This simply uses a fixed size pad.</p>
+
+<p><strong>Method 2: Percentage scaling with overlay on top of black generated by filter:</strong></p>
+
+<pre><code>ffmpeg -y -i inputfile.mov -f lavfi -i color=c=black:s=1920x1080 -filter_complex "[0:v]scale=w=0.80*iw:h=0.80*ih[scaled]; [1:v][scaled]overlay=x=0.10*main_w:y=0.10*main_h:eof_action=endall[out]; [0:a]anull[aud]" -map "[out]" -map "[aud]" -strict -2 outputfile.mp4
+</code></pre>
+
+<p>This assumes input and output size to be full HD (1920x1080). The scaling is by 80 percent. So the overlay position is 20 percent inside- but since this 20 is divided on both sides equally, the overlay uses 10 percent of main width and adds that to x position.</p>
+
+<p>The <code>eof_action</code> is required so that when the video file ends processing can stop. Else the generated black (background) from <code>-f lavfi</code> will just keep on going.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/869139" title="short permalink to this answer" class="short-link" id="link-post-869139">share</a><span class="lsep">|</span><a href="/posts/869139/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/869139/revisions" title="show all edits to this post">edited <span title="2015-01-25 07:46:09Z" class="relativetime">Jan 25 '15 at 7:46</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-01-25 05:51:34Z" class="relativetime">Jan 25 '15 at 5:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/266231/rajib"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/e43bb728aa52682f0519d8c49ed661cd?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/266231/rajib">Rajib</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,578</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="15 bronze badges"><span class="badge3"></span><span class="badgecount">15</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-869139" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="2"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1155398" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">My file is an mp4 and I got this message when running your method 2: <code>The encoder &#39;aac&#39; is experimental but experimental codecs are not enabled, add &#39;-strict -2&#39; if you want to use it.</code> I tried adding the <code>-strict -2</code> to the end, but it didn&#39;t change the error message. Any ideas?</span>
+                    &ndash;&nbsp;<a href="/users/320092/amadeusdrzaius"
+                       title="112 reputation"
+                       class="comment-user owner">AmadeusDrZaius</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 06:22:11Z" class="relativetime-clean">Jan 25 '15 at 6:22</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1155422" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AmadeusDrZaius I added the -strict -2 parameter.</span>
+                    &ndash;&nbsp;<a href="/users/266231/rajib"
+                       title="1,578 reputation"
+                       class="comment-user">Rajib</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 07:46:45Z" class="relativetime-clean">Jan 25 '15 at 7:46</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1155477" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AmadeusDrZaius No far from it. Just a happy user. Look <a href="https://ffmpeg.org/ffmpeg-filters.html" rel="nofollow">here</a> for filters. Stackexchange Superuser and StackOverflow are great resources.</span>
+                    &ndash;&nbsp;<a href="/users/266231/rajib"
+                       title="1,578 reputation"
+                       class="comment-user">Rajib</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-25 10:19:36Z" class="relativetime-clean">Jan 25 '15 at 10:19</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1156169" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AmadeusDrZaius <a href="https://trac.ffmpeg.org/wiki" rel="nofollow">trac.ffmpeg.org/wiki</a>, <a href="http://blog.superuser.com/2012/02/24/ffmpeg-the-ultimate-video-and-audio-manipulation-tool/">blog.superuser.com/2012/02/24/&hellip;</a> (shameless plug), otherwise, just ask a question here. We have a handful of people around here who know their way around ffmpeg.</span>
+                    &ndash;&nbsp;<a href="/users/48078/slhck"
+                       title="121,960 reputation"
+                       class="comment-user">slhck</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-26 14:54:24Z" class="relativetime-clean">Jan 26 '15 at 14:54</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1156359" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AmadeusDrZaius If the input audio is compatible with the output container format, then consider <a href="http://ffmpeg.org/ffmpeg.html#Stream-copy" rel="nofollow">stream copying</a> it with <code>-c:a copy</code> instead of re-encoding.</span>
+                    &ndash;&nbsp;<a href="/users/110524/lordneckbeard"
+                       title="13,887 reputation"
+                       class="comment-user">LordNeckbeard</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-26 19:06:36Z" class="relativetime-clean">Jan 26 '15 at 19:06</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-869139" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>2</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+<div class="newsletter-anon">
+    <img src="//cdn.sstatic.net/Sites/superuser/img/apple-touch-icon.png" class="newsletter-logo" />
+    <div class="newsletter-container">
+        <h2>Did you find this question interesting? Try our newsletter</h2>
+        <p class="newsletter-description">
+            Sign up for our newsletter and get our top new questions delivered to your inbox (<a href="http://stackexchange.com/newsletters/newsletter?site=superuser.com" id="newsletter-preview">see an example</a>).
+        </p>
+        <form id="anon-newsletter-form" data-error="There was a problem signing up for the newsletter. Please try again later.">
+            <input type="email" id="newsletter-email-input" placeholder="email address" title="your email address" />
+            <input type="submit" value="Subscribe" id="newsletter-email-submit"/>
+        </form>
+        <div style="margin-top: 10px; float:right;" class="dno cbt newsletter-status-confirmed">
+            <b>Subscribed!</b>
+        </div>
+        <div style="margin-top: 10px; float:right;" class="dno cbt newsletter-status-unconfirmed">
+            <b>Success!</b> Please click the link in the confirmation email to activate your subscription.
+        </div>
+    </div>
+</div>
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+
+    $('#anon-newsletter-form').submit(function () {
+        var $form = $(this);
+        var $input = $form.find('#newsletter-email-input');
+        var $submit = $form.find('#newsletter-email-submit');
+        var $container = $form.closest('.newsletter-container');
+
+        var email = $.trim($input.val());
+        if (email.length == 0) {
+            return false;
+        }
+        StackExchange.helpers.addSpinner($form);
+
+        $.ajax({
+            url: '/newsletter/signup/anon',
+            type: 'POST',
+            dataType: 'json',
+            data: { fkey: StackExchange.options.user.fkey, email: email, viaAnonNewsletterAd: true },
+            success: function (data) {
+                if (!data.error && (data.status == 'confirmed' || data.status == 'unconfirmed')) {
+                    $input.attr('disabled', true);
+                    $submit.remove();
+                    $container.find('.newsletter-status-' + data.status).show();
+                }
+                else {
+                    $container.showErrorMessage(data.error || $form.data('error'));
+                }
+            },
+            error: function () {
+                $container.showErrorMessage($form.data('error'));
+            },
+            complete: function () {
+                StackExchange.helpers.removeSpinner($form);
+            }
+        });
+
+        return false;
+    });
+</script>
+
+  
+<a name="869134"></a>
+<div id="answer-869134" class="answer" data-answerid="869134"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="869134">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I found <a href="https://www.youtube.com/watch?v=-x9Lzu_F0LM" rel="nofollow">a video</a> explaining how to put a border over a video in iMovie. Here's how you can do it:</p>
+
+<ol>
+<li><p>Use Gimp (or another tool) to create an image with black borders around it. Make sure that this image is larger than the size of the video you want to put a border around.</p></li>
+<li><p>Open iMovie and import both the clip and the border image.</p></li>
+<li><p>Open iMovie > Preferences and check the box "Show Advanced Tools".</p></li>
+<li><p>Drag the border image into the project panel and use the gear to extend the time of the clip to the length of the video. The limit of an image clip is 10 minutes, so copy and paste the image background clip as many times as necessary to match the length of the movie.</p></li>
+<li><p>Drag the movie clip from the import into the project pane and align it with the beginning of the background image. You should see a menu pop up with options for how to combine the image and movie clips. Choose "Picture-in-Picture".</p></li>
+<li><p>Adjust the movie size in the upper-right-window until only the desired amount of border is showing.</p></li>
+<li><p>Export the movie as desired.</p></li>
+</ol>
+
+<p>Just a note: this will probably take a long time (took about an hour of exporting for me, and my movie was 30 minutes long), so there's probably a more efficient way to do this.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/869134" title="short permalink to this answer" class="short-link" id="link-post-869134">share</a><span class="lsep">|</span><a href="/posts/869134/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature owner">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-01-25 05:09:44Z" class="relativetime">Jan 25 '15 at 5:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/320092/amadeusdrzaius"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a5563b966d383529a65612e6590f957f?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/320092/amadeusdrzaius">AmadeusDrZaius</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">112</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-869134" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-869134" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+							<h2 class="bottom-notice">You must <a href="/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fsuperuser.com%2fquestions%2f869117">log in</a> to answer this question.</h2>
+				
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you&#39;re looking for?							Browse other questions tagged <a href="/questions/tagged/video" class="post-tag" title="show questions tagged &#39;video&#39;" rel="tag">video</a> <a href="/questions/tagged/ffmpeg" class="post-tag" title="show questions tagged &#39;ffmpeg&#39;" rel="tag">ffmpeg</a> <a href="/questions/tagged/gimp" class="post-tag" title="show questions tagged &#39;gimp&#39;" rel="tag">gimp</a> <a href="/questions/tagged/aspect-ratio" class="post-tag" title="show questions tagged &#39;aspect-ratio&#39;" rel="tag">aspect-ratio</a> .						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2015-01-25 03:25:50Z"><b>1 year ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>2514 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2015-01-25 07:46:09Z">1 year ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,0,"adzerk1089570252",[5,17]).enableDynamicSiteSelection().setZone(56016); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1089570252"></div>
+			<div class="module" id="chat-feature">
+
+    <h4><a href="http://chat.stackexchange.com" id="h-chat-link">Visit Chat</a></h4>
+    <div class="related" id="ad502-rooms"></div>
+    <script>
+    // <!--
+        StackExchange.ready(
+        function () {
+            var options = {
+                chatUrl: 'http://chat.stackexchange.com',
+                reloadUrl: '/api/recent-chat',
+                preloadData: {"activeUsers":70,"activeRooms":44,"rooms":[{"name":"Root Access","id":118,"lastPost":1469927652,"posts":1257584,"users":[{"name":"Ramhound","id":24639,"emailhash":"d0683e1bba122b890c46783bad51bdc0","lastPost":1469927652},{"name":"Psycogeek","id":23968,"emailhash":"!https://i.stack.imgur.com/Nb6Qb.jpg?s=128\u0026g=1","lastPost":1469927394},{"name":"Ben N","id":151533,"emailhash":"!https://i.stack.imgur.com/vBJkv.png?s=128\u0026g=1","lastPost":1469926460},{"name":"Journeyman Geek","id":10208,"emailhash":"e88cb2b3858ca0df735806f1a8476b23","lastPost":1469926036},{"name":"ChatBot John Cavil","id":87560,"emailhash":"!https://i.stack.imgur.com/jt6hT.png?s=128\u0026g=1","lastPost":1469925940},{"name":"djsmiley2k","id":22839,"emailhash":"!https://i.stack.imgur.com/eSD8M.jpg?s=128\u0026g=1","lastPost":1469908968},{"name":"bwDraco","id":11606,"emailhash":"27f497f619785fb64129b9472c101a5a","lastPost":1469902016}],"messages":[{"date":1469927652,"user":"Ramhound","userid":24639}],"singleImage":false,"tags":["computers"]},{"name":"Bot Overflow","id":40974,"lastPost":1469923191,"posts":793,"users":[{"name":"ChatBot John Cavil","id":87560,"emailhash":"!https://i.stack.imgur.com/jt6hT.png?s=128\u0026g=1","lastPost":1469923191},{"name":"Bob","id":35822,"emailhash":"082d6a8bed92991450502419bdf5d420","lastPost":1469288592},{"name":"Aibobot","id":95692,"emailhash":"!https://i.stack.imgur.com/qEvBM.jpg?s=128\u0026g=1","lastPost":null}],"messages":[{"date":1469923191,"user":"ChatBot John Cavil","userid":87560}],"singleImage":false,"tags":[]}]} 
+            };
+
+            StackExchange.chatAd.init(options);
+        });
+    // -->
+    </script>
+
+</div>
+
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer"><a href="/q/332078" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">4</div></a><a href="/questions/332078/ffmpeg-add-audio-to-a-video-but-clip-it-to-the-video-length" class="question-hyperlink">FFMPEG add audio to a video but clip it to the video length</a></div><div class="spacer"><a href="/q/612876" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/612876/how-do-i-extract-parts-of-a-video-with-a-specific-aspect-ratio-with-ffmpeg-or-me" class="question-hyperlink">How do I extract parts of a video with a specific aspect ratio with ffmpeg or mencoder?</a></div><div class="spacer"><a href="/q/738813" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">2</div></a><a href="/questions/738813/how-can-i-encode-a-video-for-my-non-square-pixel-display" class="question-hyperlink">How can I encode a video for my non-square pixel display?</a></div><div class="spacer"><a href="/q/922911" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/922911/clipped-video-using-ffmpeg-is-shorter-than-expected" class="question-hyperlink">Clipped video using ffmpeg is shorter than expected</a></div><div class="spacer"><a href="/q/938877" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/938877/how-to-insert-clip-in-the-another-clip-using-avisynth" class="question-hyperlink">How to insert clip in the another clip using avisynth?</a></div><div class="spacer"><a href="/q/966246" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/966246/ffmpeg-putting-one-video-above-its-filtered-version" class="question-hyperlink">FFmpeg putting one video above its filtered version</a></div><div class="spacer"><a href="/q/1061877" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/1061877/ffmpeg-trim-and-merge-video-clips-without-reencoding" class="question-hyperlink">ffmpeg - trim and merge video clips without reencoding</a></div><div class="spacer"><a href="/q/1081471" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/1081471/inserting-video-with-image-border-into-ffmpeg" class="question-hyperlink">Inserting Video with Image Border into ffmpeg</a></div><div class="spacer"><a href="/q/1090293" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/1090293/clipping-a-video-spatially-using-ffmpeg" class="question-hyperlink">Clipping a video (spatially) using FFMPEG</a></div><div class="spacer"><a href="/q/1094996" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/1094996/ffmpeg-clip-part-of-a-video-with-screenshot" class="question-hyperlink">FFmpeg Clip part of a video with screenshot</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="//stackexchange.com/questions?tab=hot" 
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1874736/any-smart-ideas-on-finding-the-area-of-this-shaded-region" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Any smart ideas on finding the area of this shaded region?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/67888/how-do-i-estimate-the-value-of-a-small-cabin-rental-business-i-want-to-buy" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I estimate the value of a small cabin rental business I want to buy?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1876086/confusion-with-the-definition-of-limit" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Confusion with the definition of limit
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/131260/what-can-a-company-do-against-insiders-going-rogue-and-negatively-affecting-esse" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What can a company do against insiders going rogue and negatively affecting essential infrastructure?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/135773/how-did-dumbledore-figure-the-way-to-destroy-marvolo-gaunts-ring-was-gryffindor" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How did Dumbledore figure the way to destroy Marvolo Gaunt&#39;s Ring was Gryffindor&#39;s sword?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/67949/friend-was-brainwashed-with-mlm-ponzi-investment-scam-what-can-i-do" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Friend was brainwashed with MLM-/ponzi investment scam. What can I do?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/48759/designing-fictional-non-competitive-games" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Designing fictional non-competitive games
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/74682/is-it-possible-to-drive-in-the-movie-famous-la-canal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to drive in the movie-famous LA canal?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/299278/removing-first-m-from-each-line-of-file" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Removing first ^M from each line of file
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/97392/better-term-for-favorites" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Better term for &quot;Favorites&quot;
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/121841/enter-numbers-into-a-an-already-existing-list" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Enter numbers into a an already existing list
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/299106/how-keep-last-50-lines-in-logfile" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How keep last 50 lines in logfile
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-cs" title="Computer Science Stack Exchange"></div><a href="http://cs.stackexchange.com/questions/61022/is-zero-allowed-as-an-edges-weight-in-a-weighted-graph" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:419 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is zero allowed as an edge&#39;s weight, in a weighted graph?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/321697/long-urls-in-bibliography" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Long URLs in bibliography
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/136418/person-info-manager" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Person Info Manager
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/299298/delete-from-nth-occurrence-to-end-of-file" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    delete from nth occurrence to end of file
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/38637003/what-is-happening-in-this-javascript-snippet" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is happening in this JavaScript snippet?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ethereum" title="Ethereum Stack Exchange"></div><a href="http://ethereum.stackexchange.com/questions/7595/eth-sent-to-etc-address" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:642 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    ETH sent to ETC address
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/84840/how-do-i-get-around-players-losing-interest-during-mapping" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I get around players losing interest during mapping?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/86986/print-a-tabula-recta" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Print a Tabula Recta!
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/84997/can-you-cast-a-spell-as-a-ritual-while-traveling" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can you cast a spell as a ritual while traveling?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/38608/my-jokes-may-not-make-you-smile-but-at-least-my-name-will" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My jokes may not make you smile, but at least my name will
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-retrocomputing" title="Retrocomputing Stack Exchange"></div><a href="http://retrocomputing.stackexchange.com/questions/1226/can-the-two-cpus-in-a-commodore-128-run-at-the-same-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:648 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can the two CPUs in a commodore 128 run at the same time?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/135786/why-is-aragorn-shaking-while-holding-the-palantir-and-talking-to-sauron" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is Aragorn shaking while holding the Palantir and talking to Sauron?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/869117" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/869117/ivc/1346');});
+</script>
+<noscript>
+    <div><img src="/posts/869117/ivc/1346" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang"></div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="/tour">tour</a>
+                    <a href="/help">help</a>
+                    <a href="http://blog.superuser.com/?blb=1">blog</a>
+                        <a href="http://chat.stackexchange.com?tab=site&host=superuser.com">chat</a>
+                    <a href="http://data.stackexchange.com">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="http://meta.superuser.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="//mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine&#174; CMS">ExpressionEngine&#174; Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="//careers.stackoverflow.com">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo &#169; 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.7.29.3851
+            </div>
+                </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Super User works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('video,ffmpeg,gimp,aspect-ratio');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            
+            ga('create', 'UA-5620270-3');
+            ga('set', 'dimension2', '|video|ffmpeg|gimp|aspect-ratio|');             ga('send', 'pageview');
+        
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    </body>
+</html>

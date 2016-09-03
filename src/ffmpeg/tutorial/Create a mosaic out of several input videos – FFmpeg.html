@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0086)https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      Create a mosaic out of several input videos – FFmpeg
+    </title>
+      
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+        <link rel="search" href="https://trac.ffmpeg.org/search">
+        <link rel="help" href="https://trac.ffmpeg.org/wiki/TracGuide">
+        <link rel="alternate" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos?format=txt" type="text/x-trac-wiki" title="Plain Text">
+        <link rel="start" href="https://trac.ffmpeg.org/wiki">
+        <link rel="stylesheet" href="./Create a mosaic out of several input videos – FFmpeg_files/trac.css" type="text/css"><link rel="stylesheet" href="./Create a mosaic out of several input videos – FFmpeg_files/wiki.css" type="text/css"><link rel="stylesheet" href="./Create a mosaic out of several input videos – FFmpeg_files/tracvote.css" type="text/css"><link rel="stylesheet" href="./Create a mosaic out of several input videos – FFmpeg_files/tractags.css" type="text/css">
+        <link rel="shortcut icon" href="https://trac.ffmpeg.org/chrome/common/trac.ico" type="image/x-icon">
+        <link rel="icon" href="https://trac.ffmpeg.org/chrome/common/trac.ico" type="image/x-icon">
+      <link type="application/opensearchdescription+xml" rel="search" href="https://trac.ffmpeg.org/search/opensearch" title="Search FFmpeg">
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/jquery.js"></script><style>#header + #content > #left > #rlblock_left,
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/babel.js"></script>
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/en_US.js"></script>
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/trac.js"></script>
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/search.js"></script>
+      <script type="text/javascript" charset="utf-8" src="./Create a mosaic out of several input videos – FFmpeg_files/folding.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $("#content").find(".wikianchor").each(function() {
+          $(this).addAnchor(babel.format(_("Link to #%(id)s"), {id: $(this).attr('id')}));
+        });
+        $(".foldable").enableFolding(true, true);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="https://ffmpeg.org/"><img src="./Create a mosaic out of several input videos – FFmpeg_files/ffmpeg-logo.png" alt="FFmpeg"></a>
+      </div>
+      <form id="search" action="https://trac.ffmpeg.org/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="">
+          <input type="submit" value="Search">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="https://trac.ffmpeg.org/login">Login</a></li><li><a href="https://trac.ffmpeg.org/prefs">Preferences</a></li><li><a href="https://trac.ffmpeg.org/wiki/TracGuide">Help/Guide</a></li><li><a href="https://trac.ffmpeg.org/about">About Trac</a></li><li class="last"><a href="https://trac.ffmpeg.org/register">Register</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="https://trac.ffmpeg.org/wiki">Wiki</a></li><li><a href="https://trac.ffmpeg.org/timeline">Timeline</a></li><li><a href="https://trac.ffmpeg.org/report">View Tickets</a></li><li><a href="https://trac.ffmpeg.org/search">Search</a></li><li class="last"><a href="https://trac.ffmpeg.org/tags">Tags</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="pagepath" class="noprint">
+  <h1 style="display: inline;"><a class="pathentry first" title="View WikiStart" href="https://trac.ffmpeg.org/wiki">wiki:</a></h1><h1 style="display: inline; color: #b00;"><a class="pathentry" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos" title="View Create a mosaic out of several input videos">Create a mosaic out of several input videos</a></h1>
+</div>
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+        <ul>
+          <li class="first"><span id="vote" title="Vote count"><img src="./Create a mosaic out of several input videos – FFmpeg_files/aupgray.png" alt="Up-vote"><span id="votes">+0</span><img src="./Create a mosaic out of several input videos – FFmpeg_files/adowngray.png" alt="Down-vote"></span></li><li><a href="https://trac.ffmpeg.org/wiki/WikiStart">Start Page</a></li><li><a href="https://trac.ffmpeg.org/wiki/TitleIndex">Index</a></li><li class="last"><a href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos?action=history">History</a></li>
+        </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          <div id="wikipage" class="trac-content"><p>
+</p><div class="wiki-toc"><h4>Contents</h4>
+<ol>
+  <li>
+    <a href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Overview">Overview</a>
+  </li>
+  <li>
+    <a href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Detailedexplanation">Detailed explanation</a>
+  </li>
+  <li>
+    <a href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Finalword">Final word</a>
+  </li>
+</ol>
+</div><p>
+</p>
+<h1 id="Overview">Overview<a class="anchor" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Overview" title="Link to this section"> ¶</a></h1>
+<p>
+One of the great features of ffmpeg filtering library is the ability to create overlays, allowing users to put one video over another. We can also use this feature to implement the mosaic video output, usually used in security surveillance systems. An example of what we are going to achieve in this tutorial is displayed in the following screenshot:
+</p>
+<p>
+<a style="padding:0; border:none" href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic1.png"><img src="./Create a mosaic out of several input videos – FFmpeg_files/mosaic1.png"></a>
+</p>
+<p>
+We can see one video, displaying 4 different inputs at the same time. This can be done using the following ffmpeg command line (which we'll explain in detail):
+</p>
+<pre class="wiki">ffmpeg
+	-i 1.avi -i 2.avi -i 3.avi -i 4.avi
+	-filter_complex "
+		nullsrc=size=640x480 [base];
+		[0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft];
+		[1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright];
+		[2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft];
+		[3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright];
+		[base][upperleft] overlay=shortest=1 [tmp1];
+		[tmp1][upperright] overlay=shortest=1:x=320 [tmp2];
+		[tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3];
+		[tmp3][lowerright] overlay=shortest=1:x=320:y=240
+	"
+	-c:v libx264 output.mkv
+</pre><p>
+The command line above, if written in the shell directly, should look like this of course:
+</p>
+<pre class="wiki">ffmpeg -i 1.avi -i 2.avi -i 3.avi -i 4.avi -filter_complex "nullsrc=size=640x480 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft]; [3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2]; [tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3]; [tmp3][lowerright] overlay=shortest=1:x=320:y=240" -c:v libx264 output.mkv
+</pre><p>
+You can see the final video at the following link: <a class="ext-link" href="http://www.youtube.com/watch?v=ix2HxIfo4WY"><span class="icon">​</span>http://www.youtube.com/watch?v=ix2HxIfo4WY</a>
+</p>
+<h1 id="Detailedexplanation">Detailed explanation<a class="anchor" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Detailedexplanation" title="Link to this section"> ¶</a></h1>
+<p>
+Let's explain how exactly does this work, so you can create your own variants of overlay filter usage. First of all get yourself familiar with <a class="ext-link" href="http://www.ffmpeg.org/ffmpeg-all.html#overlay-1"><span class="icon">​</span>the overlay filter</a> and all of its options. Also, pay a very close attention to the provided examples section.
+</p>
+<p>
+What we need to do, in this tutorial, is to overlay 4 input videos on top of the blank background video. The end result should look like this:
+</p>
+<p>
+<a style="padding:0; border:none" href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic2.png"><img src="./Create a mosaic out of several input videos – FFmpeg_files/mosaic2.png"></a>
+</p>
+<p>
+The filter graph, for this particular case, looks something like this:
+</p>
+<p>
+<a style="padding:0; border:none" href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic3.png"><img src="./Create a mosaic out of several input videos – FFmpeg_files/mosaic3.png"></a>
+</p>
+<p>
+Now, let's get back to the command line we've used and lets explain it line by line:
+</p>
+<pre class="wiki">ffmpeg
+	-i 1.avi -i 2.avi -i 3.avi -i 4.avi
+	-filter_complex "
+		nullsrc=size=640x480 [base];
+		[0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft];
+		[1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright];
+		[2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft];
+		[3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright];
+		[base][upperleft] overlay=shortest=1 [tmp1];
+		[tmp1][upperright] overlay=shortest=1:x=320 [tmp2];
+		[tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3];
+		[tmp3][lowerright] overlay=shortest=1:x=320:y=240
+	"
+	-c:v libx264 output.mkv
+</pre><p>
+First, we created a background for our output video, using <a class="ext-link" href="http://www.ffmpeg.org/ffmpeg-all.html#color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc"><span class="icon">​</span>nullsrc filter</a>, which has the dimension of 640x480 pixels (4 videos of 320x240 pixels) and we tagged it with the name "base". Then, we also tagged each ffmpeg input to be able to reference them later in the filter graph. The way we did it was like this:
+</p>
+<pre class="wiki">[0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]
+</pre><p>
+The <a class="ext-link" href="http://www.ffmpeg.org/ffmpeg-all.html#Stream-selection"><span class="icon">​</span>stream specifier</a> "<tt>[0:v]</tt>" is telling ffmpeg to use the <strong>video stream</strong> from the <strong>first input</strong>. After we specified the input we want, we also made sure that PTS of that video starts from zero, using <a class="ext-link" href="http://www.ffmpeg.org/ffmpeg-all.html#setpts_002c-asetpts"><span class="icon">​</span>setpts filter</a> with "setpts=PTS-STARTPTS". We also did the same for all the other video inputs to make sure everything will be in sync. After that, we scaled our input video to the appropriate size and finally tagged it with a descriptive name like "upperleft".
+</p>
+<p>
+After tagging, we started to overlay videos, one by one. First, we took the "base" video (our empty background video) and then overlaid the "upperleft" video on top of it:
+</p>
+<pre class="wiki">[base][upperleft] overlay=shortest=1 [tmp1];
+</pre><p>
+We used "<tt>shortest=1</tt>" here to specify that we want the output video to stop when the shortest input video stops. Note that we didn't specify any coordinates (x, y) so the upperleft video would be located at (0, 0) i.e. in the upper-left area of the output video. After all that, we tagged that temporary step with the name "tmp1", because we will need to overlay the next input video on that temporary result:
+</p>
+<pre class="wiki">[tmp1][upperright] overlay=shortest=1:x=320 [tmp2];
+</pre><p>
+That line specifies that the "upperright" video should be overlaid on top of the "tmp1" video, which we produced in the previous step. Here we specified the output x position to 320 pixels, in order to move the video to the right. Also, we did not specify any y position so it defaults to y=0.
+</p>
+<p>
+Same thing was used in the subsequent lines, but there is one important thing to notice for the last line:
+</p>
+<pre class="wiki">[tmp3][lowerright] overlay=shortest=1:x=320:y=240
+</pre><p>
+Here, we didn't specify the tag name for our result, because we want our result to be actual output of the whole filter graph that we created so far. Also note there is no semi-column at the end of that line.
+</p>
+<h1 id="Finalword">Final word<a class="anchor" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#Finalword" title="Link to this section"> ¶</a></h1>
+<p>
+That's pretty much it. If it sounds easy, that's because <a class="ext-link" href="http://git.videolan.org/?p=ffmpeg.git;a=blob_plain;f=MAINTAINERS;hb=HEAD"><span class="icon">​</span>great people behind FFmpeg project</a> have worked hard to provide you with such an amazing tool :) One way to say "Thank You" to them is by considering a <a class="ext-link" href="http://www.ffmpeg.org/donations.html"><span class="icon">​</span>donation to FFmpeg project</a> ;)
+</p>
+</div>
+          
+          <div class="trac-modifiedby">
+            <span><a href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos?action=diff&amp;version=3" title="Version 3 by burek: Added the youtube link">Last modified</a> <a class="timeline" href="https://trac.ffmpeg.org/timeline?from=2013-06-09T16%3A33%3A39%2B03%3A00&amp;precision=second" title="See timeline at Jun 9, 2013, 4:33:39 PM">3 years ago</a></span>
+            <span class="trac-print">Last modified on Jun 9, 2013, 4:33:39 PM</span>
+          </div>
+        
+        
+      </div>
+      
+    <div id="attachments" class="collapsed">
+        <h3 class="foldable"><a id="no1" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos#no1">Attachments <span class="trac-count">(3)</span></a></h3>
+        <div>
+          <ul>
+              <li>
+    <a href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic1.png" title="View attachment">mosaic1.png</a><a href="./Create a mosaic out of several input videos – FFmpeg_files/mosaic1.png" class="trac-rawlink" title="Download">​</a>
+       (<span title="486025 bytes">474.6 KB</span>) -
+      added by <em>burek</em> <a class="timeline" href="https://trac.ffmpeg.org/timeline?from=2013-06-09T15%3A51%3A14%2B03%3A00&amp;precision=second" title="See timeline at Jun 9, 2013, 3:51:14 PM">3 years ago</a>.
+              </li>
+              <li>
+    <a href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic2.png" title="View attachment">mosaic2.png</a><a href="./Create a mosaic out of several input videos – FFmpeg_files/mosaic2.png" class="trac-rawlink" title="Download">​</a>
+       (<span title="10026 bytes">9.8 KB</span>) -
+      added by <em>burek</em> <a class="timeline" href="https://trac.ffmpeg.org/timeline?from=2013-06-09T15%3A51%3A25%2B03%3A00&amp;precision=second" title="See timeline at Jun 9, 2013, 3:51:25 PM">3 years ago</a>.
+              </li>
+              <li>
+    <a href="https://trac.ffmpeg.org/attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/mosaic3.png" title="View attachment">mosaic3.png</a><a href="./Create a mosaic out of several input videos – FFmpeg_files/mosaic3.png" class="trac-rawlink" title="Download">​</a>
+       (<span title="9226 bytes">9.0 KB</span>) -
+      added by <em>burek</em> <a class="timeline" href="https://trac.ffmpeg.org/timeline?from=2013-06-09T15%3A51%3A35%2B03%3A00&amp;precision=second" title="See timeline at Jun 9, 2013, 3:51:35 PM">3 years ago</a>.
+              </li>
+          </ul>
+          <p>
+            Download all attachments as: <a rel="nofollow" href="https://trac.ffmpeg.org/zip-attachment/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos/">.zip</a>
+          </p>
+        </div>
+    </div>
+
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="https://trac.ffmpeg.org/wiki/Create%20a%20mosaic%20out%20of%20several%20input%20videos?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="./Create a mosaic out of several input videos – FFmpeg_files/trac_logo_mini.png" height="30" width="107" alt="Trac Powered"></a>
+      <p class="left">Powered by <a href="https://trac.ffmpeg.org/about"><strong>Trac 1.0.1</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the Trac open source project at<br><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+  
+</body></html>
