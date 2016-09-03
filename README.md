@@ -25,5 +25,21 @@ java
    
 [aguardando novas sugestoes, To be continued...]<br>
 
+##Referência API (arquivo java: IntegracaoBasicaFFmpeg) 
+
+em https://github.com/rslgp/multimidia/tree/master/src <br>
+todos retornam um array de parametros (String[]) usados no ffmpeg e para rodar ele <br>
+* cortar
+ <br> pega um trecho de um video (input: tempo de inicio e final do trecho do video original a ser cortado)
+
+* makeVideoResizedBorder 
+ <br> ajusta o tamanho da screen do video
+
+* mosaic 
+ <br> junta varios vídeos em um só, e reproduz simultaneamente
+
+* addText
+ <br> adiciona um texto a um video (texto a ser inserido, proxima atualizacao por local do video a inserir)
+
 ##Equipe
 Anderson, Eládia, Mayara, Rafael, Thiago
