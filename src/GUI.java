@@ -3,7 +3,6 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -13,9 +12,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 public class GUI extends JFrame {
@@ -29,6 +30,7 @@ public class GUI extends JFrame {
   private class VideoBox extends JComponent{
 	  public Polygon shape;
 	  public int id;
+	  public String video;
 	  public VideoBox(Polygon shape, int id){
 		  this.shape=shape;		  
 		  this.id=id;
@@ -46,7 +48,12 @@ public class GUI extends JFrame {
     boolean wantDraw=true;
 	int id=0;
 
+	JFileChooser selecionarVideo = new JFileChooser();
+	File workingDirectory = new File(System.getProperty("user.dir"));
+	
 	public PaintSurface() {
+		selecionarVideo.setCurrentDirectory(workingDirectory);
+		
 		this.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					wantDraw=true;
@@ -56,6 +63,14 @@ public class GUI extends JFrame {
 		                        System.out.println("Clicked a "+s.id);
 		                        dragged = s.shape;
 		                        lastLocation = e.getPoint();
+		                        
+		                        if(e.getButton()==e.BUTTON3){
+		                        	if(selecionarVideo.showOpenDialog(s)==JFileChooser.APPROVE_OPTION){
+			                        	s.video=selecionarVideo.getSelectedFile().getAbsolutePath();
+			                        	System.out.println(s.video);
+		                        	}
+		                        }
+		                        
 		                        return;//ja entendi o q ele quer nao preciso ver os outros, sair
 		                    }
 	                }
