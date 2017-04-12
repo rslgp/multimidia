@@ -1,4 +1,4 @@
-#Projeto de Multimidia
+﻿#Projeto de Multimidia
 Programa para gerar um video reproduzindo varios videos simultaneos em certa moldura, usando ffmpeg
 
 ##Tecnologias usadas:
@@ -40,6 +40,3 @@ todos retornam um array de parametros (String[]) usados no ffmpeg e para rodar e
 
 * addText
  <br> adiciona um texto a um video (texto a ser inserido, proxima atualizacao por local do video a inserir)
-
-##Equipe
-Anderson, Eládia, Mayara, Rafael, Thiago
