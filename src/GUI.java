@@ -1,25 +1,31 @@
-package b;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 public class GUI extends JFrame {
+	String caminhoSave = "C:\\Users\\Public\\Desktop\\";
   public GUI() {
 	this.setSize(300, 300);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +40,18 @@ public class GUI extends JFrame {
 	  public VideoBox(Polygon shape, int id){
 		  this.shape=shape;		  
 		  this.id=id;
+	  }	
+	  
+	  String padraoSave(Rectangle rectangle){
+		  return rectangle.x+" "+rectangle.y+" "+rectangle.width+" "+rectangle.height;
 	  }
+	  
+	  @Override
+	  public String toString() {	
+	  	Rectangle retangulo = shape.getBounds();
+	  	return padraoSave(retangulo);
+	  }
+	  
   }
 
   private class PaintSurface extends JComponent {
@@ -51,8 +68,54 @@ public class GUI extends JFrame {
 	JFileChooser selecionarVideo = new JFileChooser();
 	File workingDirectory = new File(System.getProperty("user.dir"));
 	
+	public String getDesktop() {
+	        return System.getProperty("user.home") + "\\Desktop";
+	}
+	
 	public PaintSurface() {
 		selecionarVideo.setCurrentDirectory(workingDirectory);
+		 HashMap<Integer, Boolean> pressed = new HashMap<Integer, Boolean>();
+		KeyboardFocusManager.getCurrentKeyboardFocusManager()
+		  .addKeyEventDispatcher(new KeyEventDispatcher() {
+		      @Override
+		      public boolean dispatchKeyEvent(KeyEvent e) {   	  
+
+	                synchronized (PaintSurface.class) {
+	                    switch (e.getID()) {
+	                        case KeyEvent.KEY_PRESSED:
+	                            pressed.put(e.getKeyCode(), true);
+	                            //System.out.println("apertou");
+	                            break;
+	                        case KeyEvent.KEY_RELEASED:
+	                            pressed.remove(e.getKeyCode());
+	                            System.out.println("soltou"); 
+								if(e.getKeyCode()==83){//tecla s
+									String texto="";
+									 for(VideoBox s : shapes) {
+										 texto+=s.toString()+"\r\n";
+									 }
+									 
+									 try{
+										 FileOutputStream outputStream = new FileOutputStream(getDesktop()+"\\salvar.txt");
+										 outputStream.write(texto.getBytes());
+										 outputStream.close();
+									}catch(Exception ex){}
+								}
+	                            break;
+	                        }
+	                        return false;
+	                }
+	                
+//		    	  if(e.getKeyCode()==83){//tecla s
+//						 for(VideoBox s : shapes) {
+//							 System.out.println(s.toString());
+//						 }		    		  
+//		    	  }
+//		        return false;
+		      }
+		      
+		      
+		});
 		
 		this.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
