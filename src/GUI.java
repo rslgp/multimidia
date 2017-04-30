@@ -40,10 +40,16 @@ import javax.swing.JTextField;
 
 public class GUI extends JFrame {
 	//contem classe gui e duas privadas Videobox e PaintSurface	
+<<<<<<< HEAD
 //	public String getDesktop(){return System.getProperty("user.home") + "\\Desktop";}
 //	String caminhoSave = getDesktop()+"\\salvar.txt";
 	
 //	final String currentPath=GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+=======
+	public String getDesktop(){return System.getProperty("user.home") + "\\Desktop";}
+	String caminhoSave = getDesktop()+"\\salvar.txt";
+	final String currentPath=GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+>>>>>>> parent of 0ea6698... salvar e load local
 	
 	public GUI() {
 		this.setSize(620, 520);
@@ -319,13 +325,21 @@ public class GUI extends JFrame {
 							String texto="";
 							for(VideoBox s : shapes) texto+=s.toString()+"\r\n";
 							
+<<<<<<< HEAD
 							salvarTxt("salvar.txt",texto);
 							System.out.println("salvar.txt");
+=======
+							salvarTxt(getDesktop()+"\\salvar.txt",texto);
+>>>>>>> parent of 0ea6698... salvar e load local
 						break;
 						
 						case ('l'-32):
 							System.out.println("load");
+<<<<<<< HEAD
 							loadTxt("salvar.txt");
+=======
+							loadTxt(getDesktop()+"\\salvar.txt");
+>>>>>>> parent of 0ea6698... salvar e load local
 						break;
 						
 						case ('r'-32):
