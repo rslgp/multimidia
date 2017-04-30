@@ -319,12 +319,13 @@ public class GUI extends JFrame {
 							String texto="";
 							for(VideoBox s : shapes) texto+=s.toString()+"\r\n";
 							
-							salvarTxt(currentPath+"\\salvar.txt",texto);
+							salvarTxt(currentPath+"salvar.txt",texto);
+							System.out.println(currentPath+"salvar.txt");
 						break;
 						
 						case ('l'-32):
 							System.out.println("load");
-							loadTxt(currentPath+"\\salvar.txt");
+							loadTxt(currentPath+"salvar.txt");
 						break;
 						
 						case ('r'-32):
