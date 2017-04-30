@@ -43,7 +43,7 @@ public class GUI extends JFrame {
 //	public String getDesktop(){return System.getProperty("user.home") + "\\Desktop";}
 //	String caminhoSave = getDesktop()+"\\salvar.txt";
 	
-	final String currentPath=GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+//	final String currentPath=GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 	
 	public GUI() {
 		this.setSize(620, 520);
@@ -319,13 +319,13 @@ public class GUI extends JFrame {
 							String texto="";
 							for(VideoBox s : shapes) texto+=s.toString()+"\r\n";
 							
-							salvarTxt(currentPath+"salvar.txt",texto);
-							System.out.println(currentPath+"salvar.txt");
+							salvarTxt("salvar.txt",texto);
+							System.out.println("salvar.txt");
 						break;
 						
 						case ('l'-32):
 							System.out.println("load");
-							loadTxt(currentPath+"salvar.txt");
+							loadTxt("salvar.txt");
 						break;
 						
 						case ('r'-32):
