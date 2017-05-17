@@ -3,7 +3,9 @@ import java.util.LinkedList;
 public class IntegracaoBasicaFFmpeg {
 	
 	final static String[] verbose = {"-loglevel","panic"};
-	final static String pastaRaiz= "."+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+	final static String pastaRaiz= ""+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+	
+//	final static String pastaRaiz= "."+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 	final static String ffmpeg = pastaRaiz+"ffmpeg\\bin\\ffmpeg.exe";
 	final static String enderecoArquivoVideo = pastaRaiz+"ffmpeg\\videoExemplo\\";
 	final static String enderecoArquivoFonteTexto = pastaRaiz.charAt(0)+"\\\\"+pastaRaiz.substring(1).replace('\\', '/')+"ffmpeg/tutorial";
@@ -39,13 +41,13 @@ public class IntegracaoBasicaFFmpeg {
 				arquivoSaida = output;
 		
 		String[] padrao={
-//			"cmd",
-//			"/c",
-//			"start",
+			"cmd",
+			"/c",
+			"start",
 			ffmpeg,
-			verbose[0],
-			verbose[1],
-			"-y",
+//			verbose[0],
+//			verbose[1],
+//			"-y",
 			"-i",
 			arquivoEntrada,
 			//core,

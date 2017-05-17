@@ -30,7 +30,6 @@ import java.util.LinkedList;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -38,20 +37,16 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
-public class GUI extends JFrame {
-	//contem classe gui e duas privadas Videobox e PaintSurface	
-//	public String getDesktop(){return System.getProperty("user.home") + "\\Desktop";}
-//	String caminhoSave = getDesktop()+"\\salvar.txt";
-	
-	final String currentPath="."+GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
-	
-	public GUI() {
-		this.setSize(620, 520);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().add(new PaintSurface(), BorderLayout.CENTER);	
-		this.setVisible(true);	
+public class DrawPanel extends JPanel {
+	public DrawPanel() {
+//		this.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+//		this.setBounds(76, 0, 536, 374);
+		this.setSize(620,520);
+		this.setLayout(new BorderLayout());
+		this.add(new PaintSurface(), BorderLayout.CENTER);
 	}
-  
+	
+
 	//classe que cria objetos que guardam a forma, endereco do video, id
 	private class VideoBox extends JComponent{
 		public Polygon shape;
@@ -93,8 +88,10 @@ public class GUI extends JFrame {
 	
 		private final JFileChooser selecionarVideo = new JFileChooser();
 		private final File workingDirectory = new File(System.getProperty("user.dir"));
+		final String currentPath="."+DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 				
 		public PaintSurface() {
+			
 			IntegracaoBasicaFFmpeg.comandos=new LinkedList<>();
 			
 			selecionarVideo.setCurrentDirectory(workingDirectory);
@@ -451,4 +448,5 @@ public class GUI extends JFrame {
 		}
 	//fim poligono
 	}	
+
 }
