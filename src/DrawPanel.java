@@ -23,11 +23,20 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Writer;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.zip.ZipException;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -63,6 +72,10 @@ public class DrawPanel extends JPanel {
 			this.shape=shape;
 			this.id=id;
 		}
+		
+//		void determineDuration(){
+//			if(video!=null) duration = IntegracaoBasicaFFmpeg.getDuration(video);
+//		}
 		
 		String padraoSave(Rectangle rectangle){
 			return rectangle.x+" "+rectangle.y+" "+rectangle.width+" "+rectangle.height;
@@ -240,7 +253,8 @@ public class DrawPanel extends JPanel {
 		        	if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION){
 		        		videoAtualpopup.video=selecionarVideo.getSelectedFile().getAbsolutePath();
 						System.out.println(videoAtualpopup.video);
-						VariavelGlobal.selecionouAoMenosUmVideo=true;
+						VariavelGlobal.selecionouAoMenosUmVideo=true; //easy fast solution fix error no video selected 
+		        		//videoAtualpopup.determineDuration(); //determinar duracao usando ffmpeg
 					}
 		        }
 		    };
@@ -274,7 +288,7 @@ public class DrawPanel extends JPanel {
 		        	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         	        
 	        		if (result == JOptionPane.OK_OPTION) {
-        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortar(field1.getText(), field2.getText(), videoAtualpopup.video));
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortar(field1.getText(), /*field2.getText()*/somarDuracoes(new String[]{field1.getText(),field2.getText()}), videoAtualpopup.video));
         	        }
 	        	}	        	
 	        }
@@ -482,6 +496,64 @@ public class DrawPanel extends JPanel {
 			g.draw(new Line2D.Float(k*wdOfRow , 0, k*wdOfRow , height));
 		}
 	//fim poligono
-	}	
-
+	}
+	
+	
+	public String somarDuracoes(String time[]){
+	        int hours = 0, minutes = 0, seconds = 0, miliseconds=0;
+	        int valores[][] = new int[2][4];
+	        int indice=0;
+	        for (String string : time) {
+	            String temp[] = string.split(":");
+	            valores[indice][0]=Integer.valueOf(temp[0]);
+	            valores[indice][1]=Integer.valueOf(temp[1]);
+//	            hours = hours - Integer.valueOf(temp[0]);
+//	            minutes = minutes - Integer.valueOf(temp[1]);
+	            
+	            String splitSegundos[] = temp[2].split("\\.");
+//	            seconds = seconds - Integer.valueOf(splitSegundos[0]);
+	            valores[indice][2]=Integer.valueOf(splitSegundos[0]);
+	            valores[indice][3]=Integer.valueOf(splitSegundos[1]);
+//	            miliseconds = miliseconds - Integer.valueOf(splitSegundos[1]);
+	            indice++;
+	            
+	        }
+	        hours = valores[1][0] - valores[0][0];
+	        minutes = valores[1][1] - valores[0][1];
+	        seconds =  valores[1][2] - valores[0][2];
+	        miliseconds =  valores[1][3] - valores[0][3];
+	        System.out.println(hours + ":" + minutes + ":" + seconds + "." +miliseconds);
+	        if (miliseconds == 60) {
+	            seconds = seconds + 1;
+	            miliseconds = 0;
+	        } else if (miliseconds > 59) {
+	            seconds = seconds + (miliseconds / 60);
+	            miliseconds = miliseconds % 60;
+	        }
+	        
+	        System.out.println(hours + ":" + minutes + ":" + seconds);
+	        if (seconds == 60) {
+	            minutes = minutes + 1;
+	            seconds = 0;
+	        } else if (seconds > 59) {
+	            minutes = minutes + (seconds / 60);
+	            seconds = seconds % 60;
+	        }
+	        System.out.println(hours + ":" + minutes + ":" + seconds);
+	        if (minutes == 60) {
+	            hours = hours + 1;
+	            minutes = 0;
+	        } else if (minutes > 59) {
+	            hours = hours + (minutes / 60);
+	            minutes = minutes % 60;
+	        }
+	        System.out.println(hours + ":" + minutes + ":" + seconds);
+	        String output = "";
+	        output = String.valueOf(String.format("%02d", hours));
+	        output = output.concat(":" + (String.format("%02d", minutes)));
+	        output = output.concat(":" + (String.format("%02d", seconds)));
+	        output = output.concat("." + (String.format("%01d", miliseconds)));
+	        System.out.println(output);
+	        return output;
+	}
 }

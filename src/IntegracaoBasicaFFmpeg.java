@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 public class IntegracaoBasicaFFmpeg {
@@ -47,7 +50,7 @@ public class IntegracaoBasicaFFmpeg {
 			ffmpeg,
 //			verbose[0],
 //			verbose[1],
-//			"-y",
+			"-y",
 			"-i",
 			arquivoEntrada,
 			//core,
@@ -249,4 +252,41 @@ public class IntegracaoBasicaFFmpeg {
 //		} catch (Exception e){e.printStackTrace();}
 //		
 //	}
+	
+
+
+//	public static String getDuration(final String sVideoInput)
+//	    { 
+//		System.out.println("oi");
+//	        String res2 = "";
+//	        try
+//	        {
+//	            Process child = null;
+//	            child = Runtime.getRuntime().exec(ffmpeg  + " -i \"" + sVideoInput + "\""); 
+//	 
+//	         
+//	            InputStream lsOut = lsOut = child.getErrorStream();
+//	            InputStreamReader isr = new InputStreamReader(lsOut);
+//	            BufferedReader in = new BufferedReader(isr);
+//	 
+//	            // parsing .exe output to find info for duration:
+//	            String line;
+//	            while ((line = in.readLine()) != null)
+//	            {
+//	                if(line.contains("Duration:"))
+//	                {
+//	                    line = line.replaceFirst("Duration: ", ""); 
+//	                    line = line.trim();
+//	                     
+//	                    res2 = line.substring(0, 11);
+//	                    //System.out.println("DURATA: " + res2);
+//	                    return res2;
+//	                }
+//	                         
+//	            }
+//	        }catch(Exception e){
+//	        	e.printStackTrace();
+//	        }
+//	        return null;
+//	    }
 }
