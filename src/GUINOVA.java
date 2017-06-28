@@ -4,9 +4,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUINOVA extends JFrame {
 	private JPanel contentPane;
+	private DrawPanel drawPanel;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -19,27 +22,37 @@ public class GUINOVA extends JFrame {
 			}
 		});
 	}
+	private ActionListener configAcao(char acao){
+		return new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				drawPanel.executarAcao(acao);
+			}
+		};
+	} 
 	public GUINOVA() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
-		DrawPanel drawPanel = new DrawPanel();
+		drawPanel = new DrawPanel();
 		drawPanel.setLocation(110, 0);
 		contentPane.add(drawPanel);
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(10, 11, 90, 23);
-		contentPane.add(btnNewButton);
+		JButton botaoSalvar = new JButton("Salvar");
+		botaoSalvar.addActionListener(configAcao('s'));
+		botaoSalvar.setBounds(10, 11, 90, 23);
+		contentPane.add(botaoSalvar);
 		
-		JButton button = new JButton("New button");
-		button.setBounds(10, 61, 90, 23);
-		contentPane.add(button);
+		JButton botaoLoad = new JButton("Load");
+		botaoLoad.addActionListener(configAcao('l'));
+		botaoLoad.setBounds(10, 61, 90, 23);
+		contentPane.add(botaoLoad);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(114, 155, 204, 150);
-		contentPane.add(panel);
+		JButton botaoRender = new JButton("Render");
+		botaoRender.addActionListener(configAcao('r'));
+		botaoRender.setBounds(10, 106, 89, 23);
+		contentPane.add(botaoRender);
 	}
 }

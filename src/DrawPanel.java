@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,14 +37,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
-
 public class DrawPanel extends JPanel {
+	
+	private PaintSurface componente;
 	public DrawPanel() {
+		componente = new PaintSurface();
 //		this.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 //		this.setBounds(76, 0, 536, 374);
-		this.setSize(620,520);
+//		this.setSize(620,520);
+		this.setSize(VariavelGlobal.limitadorVermelhoX+5, VariavelGlobal.limitadorVermelhoY+5);
 		this.setLayout(new BorderLayout());
-		this.add(new PaintSurface(), BorderLayout.CENTER);
+		this.add(componente, BorderLayout.CENTER);
+	}
+	public void executarAcao(char acao){
+		componente.executarAcao(acao);
 	}
 	
 
@@ -88,7 +95,11 @@ public class DrawPanel extends JPanel {
 	
 		private final JFileChooser selecionarVideo = new JFileChooser();
 		private final File workingDirectory = new File(System.getProperty("user.dir"));
-		final String currentPath="."+DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+		//sem jar
+		final String currentPath=DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+				
+		//com jar
+		//final String currentPath="."+DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 				
 		public PaintSurface() {
 			
@@ -229,6 +240,7 @@ public class DrawPanel extends JPanel {
 		        	if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION){
 		        		videoAtualpopup.video=selecionarVideo.getSelectedFile().getAbsolutePath();
 						System.out.println(videoAtualpopup.video);
+						VariavelGlobal.selecionouAoMenosUmVideo=true;
 					}
 		        }
 		    };
@@ -310,46 +322,56 @@ public class DrawPanel extends JPanel {
 		@Override
 		public boolean dispatchKeyEvent(KeyEvent e) {
 			synchronized (PaintSurface.class) {
-				if(e.getID()==KeyEvent.KEY_RELEASED){						
-					switch(e.getKeyCode()){
-						case ('s'-32):
-							String texto="";
-							for(VideoBox s : shapes) texto+=s.toString()+"\r\n";
-							
-							salvarTxt(currentPath+"salvar.txt",texto);
-							System.out.println(currentPath+"salvar.txt");
-						break;
-						
-						case ('l'-32):
-							System.out.println("load");
-							loadTxt("salvar.txt");
-						break;
-						
-						case ('r'-32):
-							System.out.println();
-							String[] enderecoVideos = new String[id-1];
-							int i=0;
-							int tamanho= shapes.size();
-							int[] xpoints = new int[tamanho], ypoints= new int[tamanho],x2points = new int[tamanho], y2points= new int[tamanho];
-							for(VideoBox s: shapes){
-								enderecoVideos[i]=s.video;
-								xpoints[i]=s.shape.xpoints[0] * 1920/640;
-								ypoints[i]=s.shape.ypoints[0] * 1080/480;
-								
-								x2points[i]=s.shape.xpoints[1] * 1920/640;
-								y2points[i]=s.shape.ypoints[3] * 1080/480;
-								i++;
-							}
-//							String[] b = IntegracaoBasicaFFmpeg.mosaic(enderecoVideos,xpoints,ypoints);
-//							System.out.println(b[b.length-1]);
-							IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.mosaic(enderecoVideos,xpoints,ypoints,x2points,y2points));
-							break;
-					}						
-				}
+				if(e.getID()==KeyEvent.KEY_RELEASED)
+					executarAcao(Character.toLowerCase((char)e.getKeyCode()));
 				return false;
 			}
 		}
 	};
+	
+	public void executarAcao(char acao){
+			switch(acao){
+				case ('s'):
+					String texto="";
+					for(VideoBox s : shapes) texto+=s.toString()+"\r\n";
+					
+					salvarTxt(currentPath+"salvar.txt",texto);
+					System.out.println(currentPath+"salvar.txt");
+				break;
+				
+				case ('l'):
+					System.out.println("load");
+					loadTxt(currentPath+"salvar.txt");
+				break;
+				
+				case ('r'):
+					if(VariavelGlobal.selecionouAoMenosUmVideo){
+						String[] enderecoVideos = new String[id-1];
+						int i=0;
+						int tamanho= shapes.size();
+						int[] xpoints = new int[tamanho], ypoints= new int[tamanho],x2points = new int[tamanho], y2points= new int[tamanho];
+						
+						int proporcaoWidth = VariavelGlobal.resolucaoWidthVideoOutput / VariavelGlobal.limitadorVermelhoX, 
+								proporcaoHeight = VariavelGlobal.resolucaoHeightVideoOutput / VariavelGlobal.limitadorVermelhoY;
+						for(VideoBox s: shapes){
+							enderecoVideos[i]=s.video;
+							xpoints[i]=s.shape.xpoints[0] * proporcaoWidth;
+							ypoints[i]=s.shape.ypoints[0] * proporcaoHeight;
+							
+							x2points[i]=s.shape.xpoints[1] * proporcaoWidth;
+							y2points[i]=s.shape.ypoints[3] * proporcaoHeight;
+							i++;
+						}
+//						String[] b = IntegracaoBasicaFFmpeg.mosaic(enderecoVideos,xpoints,ypoints);
+//						System.out.println(b[b.length-1]);
+						IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.mosaic(enderecoVideos,xpoints,ypoints,x2points,y2points));						
+					}else{
+		        		JOptionPane.showMessageDialog(null, "Selecione ao menos um video antes de usar render", "Erro", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+					break;
+			}
+	}
 	//fim configteclado
 	
 	//config desenha arrasta
@@ -408,14 +430,15 @@ public class DrawPanel extends JPanel {
 			int qtdCores=colors.length;
 			int colorIndex = 0;
 	
-			tela.setStroke(new BasicStroke(2));
+			tela.setStroke(new BasicStroke(2)); //define a grossura da linha
 			tela.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 			
 			//pintar video base
 
 			tela.setPaint(Color.RED);
-			tela.draw(makeRectangle(0, 0, 600, 480));
+			tela.draw(makeRectangle(0, 0, VariavelGlobal.limitadorVermelhoX, VariavelGlobal.limitadorVermelhoY));
 			
+			gridMaker(tela, VariavelGlobal.limitadorVermelhoX, VariavelGlobal.limitadorVermelhoY, 4,4);
 			
 			for (VideoBox s : shapes) {
 				tela.setPaint(Color.BLACK);
@@ -445,6 +468,18 @@ public class DrawPanel extends JPanel {
 		
 		private Polygon makeRectangle(int x1, int y1, int x2, int y2) {
 			return RectangleToPolygon( new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2)) );
+		}
+		
+		private void gridMaker(Graphics2D g, int width, int height, int rows, int columns){
+			g.setStroke(new BasicStroke(1));
+			int k;
+			int htOfRow = height / (rows);
+			for (k = 0; k < rows; k++)
+			g.drawLine(0, k * htOfRow , width, k * htOfRow );
+			
+			int wdOfRow = width / (columns);
+			for (k = 0; k < columns; k++)
+			g.draw(new Line2D.Float(k*wdOfRow , 0, k*wdOfRow , height));
 		}
 	//fim poligono
 	}	

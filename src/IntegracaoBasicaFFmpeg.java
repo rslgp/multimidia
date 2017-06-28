@@ -157,7 +157,7 @@ public class IntegracaoBasicaFFmpeg {
 		
 		String[] coreMosaic={
 				"-filter_complex",
-				getScreenMosaic(1920,1080,599,336,2,xpoints,ypoints,x2points,y2points),
+				getScreenMosaic(VariavelGlobal.resolucaoWidthVideoOutput, VariavelGlobal.resolucaoHeightVideoOutput,599,336,2,xpoints,ypoints,x2points,y2points),
 				"-c:v",
 				"libx264"				
 		};
