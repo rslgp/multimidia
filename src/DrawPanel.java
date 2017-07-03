@@ -22,13 +22,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -104,7 +107,10 @@ public class DrawPanel extends JPanel {
 				
 		//com jar
 		//final String currentPath="."+DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
-				
+			
+
+	    private BufferedImage image;
+	    
 		public PaintSurface() {
 			
 			IntegracaoBasicaFFmpeg.comandos=new LinkedList<>();
@@ -334,6 +340,7 @@ public class DrawPanel extends JPanel {
 		}
 	};
 	
+	boolean booleanBackgroundImage = false;
 	public void executarAcao(char acao){
 			switch(acao){
 				case ('s'):
@@ -347,6 +354,21 @@ public class DrawPanel extends JPanel {
 				case ('l'):
 					System.out.println("load");
 					loadTxt(currentPath+"salvar.txt");
+				break;
+
+				case ('b'):
+					booleanBackgroundImage=true;
+				//reusei o jfile do video
+					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION){
+						try {
+							image = ImageIO.read(selecionarVideo.getSelectedFile());
+							image=ajustarTamanho(image,VariavelGlobal.limitadorVermelhoX,VariavelGlobal.limitadorVermelhoY);
+							repaint();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				break;
 				
 				case ('r'):
@@ -428,6 +450,9 @@ public class DrawPanel extends JPanel {
 		
 	//desenha na tela ( repaint() usa esse metodo)
 		public void paint(Graphics g) {
+			//se escolheu por imagem de fundo
+			if(booleanBackgroundImage) g.drawImage(image, 0, 0, this);
+			
 			tela = (Graphics2D) g;
 			tela.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			
@@ -546,5 +571,18 @@ public class DrawPanel extends JPanel {
 	        output = output.concat("." + (String.format("%01d", miliseconds)));
 	        System.out.println(output);
 	        return output;
+	}
+	
+	//resize imagem de fundo
+	public static BufferedImage ajustarTamanho(BufferedImage img, int newW, int newH) {  
+	    int w = img.getWidth();  
+	    int h = img.getHeight();  
+	    BufferedImage dimg = new BufferedImage(newW, newH, img.getType());  
+	    Graphics2D g = dimg.createGraphics();  
+	    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+	    RenderingHints.VALUE_INTERPOLATION_BILINEAR);  
+	    g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);  
+	    g.dispose();  
+	    return dimg;  
 	}
 }
