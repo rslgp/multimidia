@@ -142,13 +142,13 @@ public class DrawPanel extends JPanel {
 		    m3 = new JMenuItem("Cortar");
 		    m3.setMnemonic(KeyEvent.VK_C);
 		    
-		    m4 = new JMenuItem("Inserir Texto nesta posicao");
+		    m4 = new JMenuItem("Inserir Texto nesta posição");
 		    m4.setMnemonic(KeyEvent.VK_T);
 		    
 		    m5 = new JMenuItem("Inserir Borda nesse video");
 		    m5.setMnemonic(KeyEvent.VK_B);
 
-		    m6 = new JMenuItem("Sobreescrever Audio nesse video");
+		    m6 = new JMenuItem("Sobrescrever Audio nesse video");
 		    m6.setMnemonic(KeyEvent.VK_A);
 		    
 		    //cortar
