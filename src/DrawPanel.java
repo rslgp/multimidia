@@ -378,15 +378,17 @@ public class DrawPanel extends JPanel {
 						int tamanho= shapes.size();
 						int[] xpoints = new int[tamanho], ypoints= new int[tamanho],x2points = new int[tamanho], y2points= new int[tamanho];
 						
-						int proporcaoWidth = VariavelGlobal.resolucaoWidthVideoOutput / VariavelGlobal.limitadorVermelhoX, 
-								proporcaoHeight = VariavelGlobal.resolucaoHeightVideoOutput / VariavelGlobal.limitadorVermelhoY;
+						double proporcaoWidth = (double) VariavelGlobal.resolucaoWidthVideoOutput / (double) VariavelGlobal.limitadorVermelhoX, 
+								proporcaoHeight = (double) VariavelGlobal.resolucaoHeightVideoOutput / (double) VariavelGlobal.limitadorVermelhoY;
+						
+						int proporcaoWidthResultado= (int)Math.round(proporcaoWidth), proporcaoHeightResultado = (int)Math.round(proporcaoHeight);
 						for(VideoBox s: shapes){
 							enderecoVideos[i]=s.video;
-							xpoints[i]=s.shape.xpoints[0] * proporcaoWidth;
-							ypoints[i]=s.shape.ypoints[0] * proporcaoHeight;
+							xpoints[i]=s.shape.xpoints[0] * proporcaoWidthResultado;
+							ypoints[i]=s.shape.ypoints[0] * proporcaoHeightResultado;
 							
-							x2points[i]=s.shape.xpoints[1] * proporcaoWidth;
-							y2points[i]=s.shape.ypoints[3] * proporcaoHeight;
+							x2points[i]=s.shape.xpoints[1] * proporcaoWidthResultado;
+							y2points[i]=s.shape.ypoints[3] * proporcaoHeightResultado;
 							i++;
 						}
 //						String[] b = IntegracaoBasicaFFmpeg.mosaic(enderecoVideos,xpoints,ypoints);

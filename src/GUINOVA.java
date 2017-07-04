@@ -3,7 +3,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
+import javax.swing.JLabel;
 
 public class GUINOVA extends JFrame {
 	private JPanel contentPane;
@@ -71,23 +72,17 @@ public class GUINOVA extends JFrame {
 		            	VariavelGlobal.resolucaoWidthVideoOutput=1280;
 		            	VariavelGlobal.resolucaoHeightVideoOutput=720;
 		                break;
-		            case "480p":
-	        			customBase.setText("858");
-		        		customAltura.setText("480");
-		            	VariavelGlobal.resolucaoWidthVideoOutput=858;
-		            	VariavelGlobal.resolucaoHeightVideoOutput=480;
-		                break;
+//		            case "480p":
+//	        			customBase.setText("854");
+//		        		customAltura.setText("480");
+//		            	VariavelGlobal.resolucaoWidthVideoOutput=854;
+//		            	VariavelGlobal.resolucaoHeightVideoOutput=480;
+//		                break;
 		            case "360p":
-	        			customBase.setText("480");
+	        			customBase.setText("640");
 		        		customAltura.setText("360");
-		            	VariavelGlobal.resolucaoWidthVideoOutput=480;
+		            	VariavelGlobal.resolucaoWidthVideoOutput=640;
 		            	VariavelGlobal.resolucaoHeightVideoOutput=360;
-		                break;
-		            case "240p":
-		        		customBase.setText("352");
-		        		customAltura.setText("240");
-		            	VariavelGlobal.resolucaoWidthVideoOutput=352;
-		            	VariavelGlobal.resolucaoHeightVideoOutput=240;
 		                break;
 
 		            case "Custom":
@@ -123,12 +118,13 @@ public class GUINOVA extends JFrame {
 		selecionarImg.setCurrentDirectory(workingDirectory);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		drawPanel = new DrawPanel();
-		drawPanel.setLocation(110, 0);
+		drawPanel.setLocation(130, 13);
+		drawPanel.setBackground(new Color(232, 232, 232));
 		contentPane.add(drawPanel);
 		setContentPane(contentPane);
 		
@@ -155,18 +151,21 @@ public class GUINOVA extends JFrame {
 		//fim imagem referencia
 		
 		//configurar selecao de resolucoes
-		String[] resolucoes = new String[] {"1080p", "720p","480p", "360p", "240p", "Custom"};
+		
+		String[] resolucoes = new String[] {"1080p", "720p","360p"};
 		DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(resolucoes);		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "<html>Resolu\u00E7\u00E3o do<br>v\u00EDdeo resultado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 184, 102, 101);
+		panel.setBounds(10, 184, 102, 123);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		resolucoesList = new JComboBox(comboModel);
 		resolucoesList.setBounds(10, 37, 90, 23);
 		panel.add(resolucoesList);	
 
-	    NumberFormat format = NumberFormat.getInstance();
+
+	    DecimalFormat format = new DecimalFormat();
+	    format.setGroupingUsed(false);
 	    formatter = new NumberFormatter(format);
 	    //formatter.setValueClass(Integer.class);
 	    formatter.setMinimum(0);
@@ -185,7 +184,14 @@ public class GUINOVA extends JFrame {
 		customAltura.setEnabled(false);
 		customAltura.setToolTipText("altura");
 		customAltura.setBounds(50, 71, 42, 20);
-		panel.add(customAltura);		
+		panel.add(customAltura);
+		
+		customBase.setText("1920");
+		customAltura.setText("1080");
+		
+		JLabel label = new JLabel("16:9");
+		label.setBounds(10, 98, 46, 14);
+		panel.add(label);
 		
     	customBaseEdit= new JFormattedTextField(formatter);
     	customAlturaEdit= new JFormattedTextField(formatter);
