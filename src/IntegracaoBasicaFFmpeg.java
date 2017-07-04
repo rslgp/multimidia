@@ -2,17 +2,23 @@ import java.util.LinkedList;
 
 public class IntegracaoBasicaFFmpeg {
 	
-	final static String[] verbose = {"-loglevel","panic"};
-	final static String pastaRaiz= ""+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+	private final static String[] verbose = {"-loglevel","panic"};
+	//source
+	private final static String pastaRaiz= ""+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
+	private final static String ffmpeg = pastaRaiz+"ffmpeg\\bin\\ffmpeg.exe";
 	
-//	final static String pastaRaiz= "."+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
-	final static String ffmpeg = pastaRaiz+"ffmpeg\\bin\\ffmpeg.exe";
-	final static String enderecoArquivoVideo = pastaRaiz+"ffmpeg\\videoExemplo\\";
-	final static String enderecoArquivoFonteTexto = pastaRaiz.charAt(0)+"\\\\"+pastaRaiz.substring(1).replace('\\', '/')+"ffmpeg/tutorial";
+	//jar
+//	private final static String pastaRaiz= VariavelGlobal.currentDirectory;
+//	private final static String ffmpeg = pastaRaiz+"ffmpeg\\ffmpeg.exe";
 	
-	static Process processoFFmpeg;
+	private final static String enderecoArquivoVideo = pastaRaiz+"ffmpeg\\videoExemplo\\";
+	private final static String enderecoArquivoFonteTexto = pastaRaiz.charAt(0)+"\\\\"+pastaRaiz.substring(1).replace('\\', '/')+"ffmpeg/tutorial";
 	
-	static int tamanhoFonte=40;
+	private static Process processoFFmpeg;
+	
+	public static int tamanhoFonte=40;
+	
+	private static String[] juntarAudios = new String[6];
 	
 	public static void executarFFmpeg(String[] parametros){		
 		try {
@@ -155,17 +161,33 @@ public class IntegracaoBasicaFFmpeg {
 				output=enderecoVideos[0].substring(0, enderecoVideos[0].lastIndexOf('\\'))+"\\mosaic"+getExtensaoVideo(enderecoVideos[0]);
 
 		
+		if(enderecoVideos.length>1){
+			juntarAudios[0]="-filter_complex";
+			juntarAudios[1]="\"amerge\"";
+			juntarAudios[2]="-ac";
+			juntarAudios[3]="2";
+			juntarAudios[4]="-c:a";
+			juntarAudios[5]="libmp3lame";
+		}else{
+			juntarAudios[0]="";
+			juntarAudios[1]="";
+			juntarAudios[2]="";
+			juntarAudios[3]="";
+			juntarAudios[4]="";
+			juntarAudios[5]="";			
+		}
+		
 		String[] coreMosaic={
-				"-filter_complex",
-				"\"amerge\"",//juntar audios
+				juntarAudios[0],
+				juntarAudios[1],//juntar audios
 				"-filter_complex",
 				getScreenMosaic(VariavelGlobal.resolucaoWidthVideoOutput, VariavelGlobal.resolucaoHeightVideoOutput,599,336,2,xpoints,ypoints,x2points,y2points),
 				"-c:v",
 				"libx264",
-				"-ac",
-				"2",
-				"-c:a",
-				"libmp3lame"
+				juntarAudios[2],
+				juntarAudios[3],
+				juntarAudios[4],
+				juntarAudios[5]
 		};
 //		String[] core={
 //				"-i",
