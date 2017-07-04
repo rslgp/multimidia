@@ -8,6 +8,4 @@ public final class VariavelGlobal {
 
     public static boolean selecionouAoMenosUmVideo=false;
     
-    public static final String currentDirectory = System.getProperty("user.dir")+"\\";
-    
 }

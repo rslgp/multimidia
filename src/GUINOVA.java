@@ -11,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -19,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
+import javax.swing.JLabel;
 
 public class GUINOVA extends JFrame {
 	private JPanel contentPane;
@@ -111,7 +111,7 @@ public class GUINOVA extends JFrame {
 	}	
 
 	private final JFileChooser selecionarImg = new JFileChooser();
-	private final File workingDirectory = new File(VariavelGlobal.currentDirectory);
+	private final File workingDirectory = new File(System.getProperty("user.dir"));
 	
 	public GUINOVA() {
 

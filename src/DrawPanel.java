@@ -101,7 +101,7 @@ public class DrawPanel extends JPanel {
 		private int id=1;
 	
 		private final JFileChooser selecionarVideo = new JFileChooser();
-		private final File workingDirectory = new File(VariavelGlobal.currentDirectory);
+		private final File workingDirectory = new File(System.getProperty("user.dir"));
 		//sem jar
 		final String currentPath=DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 				

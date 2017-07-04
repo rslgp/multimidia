@@ -3,12 +3,13 @@ import java.util.LinkedList;
 public class IntegracaoBasicaFFmpeg {
 	
 	private final static String[] verbose = {"-loglevel","panic"};
-	//source
+	
+	//src
 	private final static String pastaRaiz= ""+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 	private final static String ffmpeg = pastaRaiz+"ffmpeg\\bin\\ffmpeg.exe";
-	
+
 	//jar
-//	private final static String pastaRaiz= VariavelGlobal.currentDirectory;
+//	final static String pastaRaiz= "."+IntegracaoBasicaFFmpeg.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
 //	private final static String ffmpeg = pastaRaiz+"ffmpeg\\ffmpeg.exe";
 	
 	private final static String enderecoArquivoVideo = pastaRaiz+"ffmpeg\\videoExemplo\\";
@@ -17,7 +18,6 @@ public class IntegracaoBasicaFFmpeg {
 	private static Process processoFFmpeg;
 	
 	public static int tamanhoFonte=40;
-	
 	private static String[] juntarAudios = new String[6];
 	
 	public static void executarFFmpeg(String[] parametros){		
