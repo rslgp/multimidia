@@ -212,7 +212,26 @@ public class IntegracaoBasicaFFmpeg {
 //		System.out.println("\n"+processoFFmpeg.getErrorStream());
 		
 		return padraoParametros(input, output, core);
-	}	
+	}
+	
+	public static String[] addBorda(String hexCor, int tamanhoLinha,String enderecoVideo){		
+//		String input = "out.mp4",
+//				output = "text.mp4",
+
+		String input = enderecoVideo,
+				output=enderecoVideo.substring(0, enderecoVideo.lastIndexOf('\\'))+"\\borda"+getExtensaoVideo(enderecoVideo);
+		
+		
+		String[] core={
+				"-vf",
+				"drawbox= x=0:y=0:0:0:color=0x"+hexCor+":t="+tamanhoLinha
+		};
+		//iw eh o width do video input
+//		System.out.println("\n"+processoFFmpeg.getErrorStream());
+		
+		return padraoParametros(input, output, core);
+	}
+	//ffmpeg -i input.avi -vf "drawbox= : x=0 : y=0 : w=100 : h=100 : color=green" output.avi
 
 	public static void imprimirParametros(String[] parameters){
 		for(String i : parameters) System.out.print(i+" ");	

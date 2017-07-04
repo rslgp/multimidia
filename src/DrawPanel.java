@@ -131,7 +131,7 @@ public class DrawPanel extends JPanel {
 			// build poup menu
 		    popup = new JPopupMenu();
 
-			JMenuItem m1,m2,m3,m4;
+			JMenuItem m1,m2,m3,m4,m5;
 			
 		    m1 = new JMenuItem("Selecionar video");
 		    m1.setMnemonic(KeyEvent.VK_V);
@@ -144,6 +144,9 @@ public class DrawPanel extends JPanel {
 		    
 		    m4 = new JMenuItem("Inserir Texto nesta posicao");
 		    m4.setMnemonic(KeyEvent.VK_T);
+		    
+		    m5 = new JMenuItem("Inserir borda nesse video");
+		    m5.setMnemonic(KeyEvent.VK_B);
 		    
 		    //cortar
 		    panel = new JPanel(new GridLayout(0, 1));
@@ -182,11 +185,13 @@ public class DrawPanel extends JPanel {
 		    m2.addActionListener(popupconfig2());
 		    m3.addActionListener(popupconfig3());
 		    m4.addActionListener(popupconfig4());
+		    m5.addActionListener(popupconfig5());
 		    	    
 		    popup.add(m1);
 		    popup.add(m2);	
 		    popup.add(m3);
-		    popup.add(m4);			    
+		    popup.add(m4);	
+		    popup.add(m5);			    
 		    //fim menu popup
 		}
 		
@@ -296,9 +301,9 @@ public class DrawPanel extends JPanel {
 	        public void actionPerformed(ActionEvent e) {
 	        	if(videoAtualpopup.video==null){
 	        		JOptionPane.showMessageDialog(null, "Selecione um video antes para servir de base para inserir o texto", "Erro", JOptionPane.INFORMATION_MESSAGE);
-	        		for(int i=0; i<videoAtualpopup.shape.ypoints.length;i++){
-	        			System.out.println(videoAtualpopup.shape.ypoints[i]+" ");
-	        		}
+//	        		for(int i=0; i<videoAtualpopup.shape.ypoints.length;i++){
+//	        			System.out.println(videoAtualpopup.shape.ypoints[i]+" ");
+//	        		}
 	        		videoAtualpopup.shape.ypoints[3]=videoAtualpopup.shape.ypoints[2]=(int) (videoAtualpopup.shape.ypoints[0]  + (0.8 * IntegracaoBasicaFFmpeg.tamanhoFonte));
 	        		repaint();
 	        		return;
@@ -324,7 +329,42 @@ public class DrawPanel extends JPanel {
 	        	}
 	        }
 	    };
-	}		
+	}	
+
+	public ActionListener popupconfig5(){
+		return new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(videoAtualpopup.video==null)
+	        		JOptionPane.showMessageDialog(null, "Selecione um video antes para servir de base para inserir a borda", "Erro", JOptionPane.INFORMATION_MESSAGE);
+				else{
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(configTeclado);
+	        							
+					JTextField field1 = new JTextField(),
+							url= new JTextField("https://www.webpagefx.com/web-design/color-picker"),
+							field2 = new JTextField();
+					Object[] message = {
+						"url para escolher cor",url,
+					    "<html>insira a cor (hex code)(ex.: FFFFFF)<br><a href=https://www.webpagefx.com/web-design/color-picker>https://www.webpagefx.com/web-design/color-picker</a> :", field1,
+					    "Escolha o tamanho da linha da borda (recomendado 7 a 28)", field2
+					};
+					int option = JOptionPane.showConfirmDialog(null, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+					if (option == JOptionPane.OK_OPTION)
+					{
+					    String value1 = field1.getText();
+					    int value2 = Integer.parseInt(field2.getText());
+
+						//https://www.webpagefx.com/web-design/color-picker/
+//						Rectangle retangulo = videoAtualpopup.shape.getBounds();
+						IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.addBorda(/*retangulo.width, retangulo.height,*/value1,value2,videoAtualpopup.video));				
+
+					}
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(configTeclado);
+	        	}
+			}
+		};
+	}
 	//fim popup config
 		
 	//configs
