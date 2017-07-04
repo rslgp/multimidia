@@ -131,7 +131,7 @@ public class DrawPanel extends JPanel {
 			// build poup menu
 		    popup = new JPopupMenu();
 
-			JMenuItem m1,m2,m3,m4,m5;
+			JMenuItem m1,m2,m3,m4,m5,m6;
 			
 		    m1 = new JMenuItem("Selecionar video");
 		    m1.setMnemonic(KeyEvent.VK_V);
@@ -145,8 +145,11 @@ public class DrawPanel extends JPanel {
 		    m4 = new JMenuItem("Inserir Texto nesta posicao");
 		    m4.setMnemonic(KeyEvent.VK_T);
 		    
-		    m5 = new JMenuItem("Inserir borda nesse video");
+		    m5 = new JMenuItem("Inserir Borda nesse video");
 		    m5.setMnemonic(KeyEvent.VK_B);
+
+		    m6 = new JMenuItem("Sobreescrever Audio nesse video");
+		    m6.setMnemonic(KeyEvent.VK_A);
 		    
 		    //cortar
 		    panel = new JPanel(new GridLayout(0, 1));
@@ -186,12 +189,14 @@ public class DrawPanel extends JPanel {
 		    m3.addActionListener(popupconfig3());
 		    m4.addActionListener(popupconfig4());
 		    m5.addActionListener(popupconfig5());
+		    m6.addActionListener(popupconfig6());
 		    	    
 		    popup.add(m1);
 		    popup.add(m2);	
 		    popup.add(m3);
 		    popup.add(m4);	
-		    popup.add(m5);			    
+		    popup.add(m5);	
+		    popup.add(m6);			    
 		    //fim menu popup
 		}
 		
@@ -365,6 +370,19 @@ public class DrawPanel extends JPanel {
 			}
 		};
 	}
+
+	public ActionListener popupconfig6(){
+		return new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+
+				if(videoAtualpopup.video==null)
+	        		JOptionPane.showMessageDialog(null, "Selecione um video antes para servir de base para sobreescrever o audio", "Erro", JOptionPane.INFORMATION_MESSAGE);
+				else{
+					executarAcao('a');
+	        	}	        	
+	        }
+	    };
+	}	
 	//fim popup config
 		
 	//configs
@@ -394,6 +412,11 @@ public class DrawPanel extends JPanel {
 				case ('l'):
 					System.out.println("load");
 					loadTxt(currentPath+"salvar.txt");
+				break;
+				
+				case ('a')://inserir audio
+					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION)
+						IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.inserirAudio(selecionarVideo.getSelectedFile().getAbsolutePath(), videoAtualpopup.video));
 				break;
 
 				case ('b'):

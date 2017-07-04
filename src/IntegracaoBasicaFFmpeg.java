@@ -157,9 +157,15 @@ public class IntegracaoBasicaFFmpeg {
 		
 		String[] coreMosaic={
 				"-filter_complex",
+				"\"amerge\"",//juntar audios
+				"-filter_complex",
 				getScreenMosaic(VariavelGlobal.resolucaoWidthVideoOutput, VariavelGlobal.resolucaoHeightVideoOutput,599,336,2,xpoints,ypoints,x2points,y2points),
 				"-c:v",
-				"libx264"				
+				"libx264",
+				"-ac",
+				"2",
+				"-c:a",
+				"libmp3lame"
 		};
 //		String[] core={
 //				"-i",
@@ -228,6 +234,35 @@ public class IntegracaoBasicaFFmpeg {
 		};
 		//iw eh o width do video input
 //		System.out.println("\n"+processoFFmpeg.getErrorStream());
+		
+		return padraoParametros(input, output, core);
+	}
+
+	
+	public static String[] inserirAudio(String enderecoAudio,String enderecoVideo){		
+//		String input = "out.mp4",
+//				output = "text.mp4",
+
+		String input = enderecoVideo,
+				output=enderecoVideo.substring(0, enderecoVideo.lastIndexOf('\\'))+"\\audioInserido"+getExtensaoVideo(enderecoVideo);
+		
+		
+		String[] core={
+				"-i",
+				enderecoAudio,
+				"-c:v",
+				"copy",
+				"-c:a",
+				"aac",
+				"-strict",
+				"experimental",
+				"-map",
+				"0:v:0",
+				"-map",
+				"1:a:0"
+		};
+		//-c:v copy -c:a aac -strict experimental \
+		//-map 0:v:0 -map 1:a:0
 		
 		return padraoParametros(input, output, core);
 	}
