@@ -99,8 +99,9 @@ public class DrawPanel extends JPanel {
 		
 		boolean wantDraw=true;
 		private int id=1;
-	
-		private final JFileChooser selecionarVideo = new JFileChooser();
+		
+		private String arquivoPath;
+//		private final JFileChooser selecionarVideo = new JFileChooser();
 		private final File workingDirectory = new File(System.getProperty("user.dir"));
 		//sem jar
 		final String currentPath=DrawPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replace('/', '\\');
@@ -115,7 +116,7 @@ public class DrawPanel extends JPanel {
 			
 			IntegracaoBasicaFFmpeg.comandos=new LinkedList<>();
 			
-			selecionarVideo.setCurrentDirectory(workingDirectory);
+			VariavelGlobal.selecionarVideo.setCurrentDirectory(workingDirectory);
 						
 			//salvar ou load usando teclado
 			KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher( configTeclado	);
@@ -257,8 +258,9 @@ public class DrawPanel extends JPanel {
 	public ActionListener popupconfig1(){
 			return new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
-		        	if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION){
-		        		videoAtualpopup.video=selecionarVideo.getSelectedFile().getAbsolutePath();
+					arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
+					if(arquivoPath!=null){
+		        		videoAtualpopup.video=arquivoPath;
 						System.out.println(videoAtualpopup.video);
 						VariavelGlobal.selecionouAoMenosUmVideo=true; //easy fast solution fix error no video selected 
 		        		//videoAtualpopup.determineDuration(); //determinar duracao usando ffmpeg
@@ -313,6 +315,7 @@ public class DrawPanel extends JPanel {
 	        		repaint();
 	        		return;
 	        	}else{
+	        		//desativar atalho teclado
 	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(configTeclado);
 	        		int result = JOptionPane.showConfirmDialog(null, panel2, "Texto",
 		        	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -330,6 +333,7 @@ public class DrawPanel extends JPanel {
 	    	        			);
 	    	        } 
 
+	        		//reativar atalho teclado
 	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(configTeclado);
 	        	}
 	        }
@@ -415,16 +419,19 @@ public class DrawPanel extends JPanel {
 				break;
 				
 				case ('a')://inserir audio
-					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION)
-						IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.inserirAudio(selecionarVideo.getSelectedFile().getAbsolutePath(), videoAtualpopup.video));
+					arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
+					if(arquivoPath!=null)
+//					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION)
+						IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.inserirAudio(arquivoPath, videoAtualpopup.video));
 				break;
 
 				case ('b'):
 					booleanBackgroundImage=true;
 				//reusei o jfile do video
-					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION){
+				arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
+					if(arquivoPath!=null){
 						try {
-							image = ImageIO.read(selecionarVideo.getSelectedFile());
+							image = ImageIO.read(new File(arquivoPath));
 							image=ajustarTamanho(image,VariavelGlobal.limitadorVermelhoX,VariavelGlobal.limitadorVermelhoY);
 							repaint();
 						} catch (IOException e) {
