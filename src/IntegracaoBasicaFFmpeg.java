@@ -19,6 +19,8 @@ public class IntegracaoBasicaFFmpeg {
 	
 	public static int tamanhoFonte=40;
 	private static String[] juntarAudios = new String[6];
+
+	private static String arquivoCortar="split";
 	
 	public static void executarFFmpeg(String[] parametros){		
 		try {
@@ -43,8 +45,8 @@ public class IntegracaoBasicaFFmpeg {
 	public static String[] padraoParametros(String input, String output, String[] core){
 //		String arquivoEntrada = enderecoArquivoVideo+input,
 //				arquivoSaida = enderecoArquivoVideo+output;
-		String arquivoEntrada = input,
-				arquivoSaida = output;
+//		String arquivoEntrada = input,
+//				arquivoSaida = output;
 		
 		String[] padrao={
 			"cmd",
@@ -55,9 +57,9 @@ public class IntegracaoBasicaFFmpeg {
 //			verbose[1],
 			"-y",
 			"-i",
-			arquivoEntrada,
+			input,
 			//core,
-			arquivoSaida
+			output
 		};
 
 		int tamanhoPadrao=padrao.length, tamanhoCore=core.length;
@@ -86,22 +88,71 @@ public class IntegracaoBasicaFFmpeg {
 		return parameters;		
 	}
 
-	public static String[] cortar(String inicio, String fim, String enderecoVideo){
+	public static String[] cortar(String inicio, String fim, String enderecoVideo, boolean temFinal){
 //		String input = "video.mp4",
 //				output = "split.mp4";
 		String input = enderecoVideo,
-				output = enderecoVideo.substring(0,enderecoVideo.lastIndexOf('\\'))+"\\split"+getExtensaoVideo(enderecoVideo);
+				output = enderecoVideo.substring(0,enderecoVideo.lastIndexOf('\\'))+"\\"+arquivoCortar+getExtensaoVideo(enderecoVideo);
+		
+		String[] parametroFim={"-to",fim};
+		if(temFinal==false) parametroFim[0]=parametroFim[1]="";
 		
 		String[] core={
 			"-ss",
 			inicio,
+			parametroFim[0],
+			parametroFim[1],//"00:00:30.0"	
 			"-c",
-			"copy",
-			"-t",
-			fim,//"00:00:30.0"				
+			"copy",			
 		};
-		
+		arquivoCortar="split";
 		return padraoParametros(input, output, core);
+	}
+	
+	public static String[] juntar(String enderecoVideo/*, String enderecoVideo2*/){
+//		String input = "video.mp4",
+//				output = "split.mp4";
+
+		String pasta=enderecoVideo.substring(0,enderecoVideo.lastIndexOf('\\'))+"\\";
+//		String input = " \" \" -f concat -safe 0 -i "+pasta+"tempEnderecos.txt",
+				String input = pasta+"tempEnderecos.txt",
+				output = pasta+"juntado"+getExtensaoVideo(enderecoVideo);
+//		try (
+//				FileOutputStream fos = new FileOutputStream(input);
+//				Writer writer = new BufferedWriter(new OutputStreamWriter(
+//				fos, "utf-8"))
+//			) {
+//			String arquivotxtenderecos="file '"+enderecoVideo+"' \nfile '"+enderecoVideo2+"\'";
+//	   writer.write(arquivotxtenderecos);
+//		fos.close();
+//	}catch(Exception e){}
+		
+        /*
+         * D:\fun>ffmpeg\ffmpeg.exe -y -f concat -safe 0 -i D:\Downloads\lista.txt -codec copy D:\Downloads\concate.mp3
+         * 
+         */
+		
+		String[] core={
+			"cmd",
+			"/c",
+			"start",
+			ffmpeg,
+//				verbose[0],
+//				verbose[1],
+			"-y",
+			"-f",
+			"concat",
+			"-safe",
+			"0",
+			"-i",
+			input,
+			"-codec",			
+			"copy",
+			output
+		};
+
+		imprimirParametros(core);
+		return core;
 	}
 	
 //	public static String[] makeVideoResizedBorder(){
@@ -307,6 +358,12 @@ public class IntegracaoBasicaFFmpeg {
 		return padraoParametros(input, output, core); 
 	}
 	static LinkedList<String[]> comandos;
+
+
+	public static String[] cortarJ(String arquivoSaida,String inicio, String fim, String enderecoVideo, boolean temFinal){
+		arquivoCortar=arquivoSaida;
+		return cortar(inicio, fim, enderecoVideo,temFinal);
+	}
 	
 //	public static void main(String[] args) {
 ////		String arquivo= JOptionPane.showInputDialog("insira endereco do arquivo: ");

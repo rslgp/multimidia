@@ -132,7 +132,7 @@ public class DrawPanel extends JPanel {
 			// build poup menu
 		    popup = new JPopupMenu();
 
-			JMenuItem m1,m2,m3,m4,m5,m6;
+			JMenuItem m1,m2,m3,m4,m5,m6,m7;
 			
 		    m1 = new JMenuItem("Selecionar video");
 		    m1.setMnemonic(KeyEvent.VK_V);
@@ -151,6 +151,9 @@ public class DrawPanel extends JPanel {
 
 		    m6 = new JMenuItem("Sobrescrever Audio nesse video");
 		    m6.setMnemonic(KeyEvent.VK_A);
+		    
+		    m7 = new JMenuItem("Remover trecho desse video");
+		    m7.setMnemonic(KeyEvent.VK_R);
 		    
 		    //cortar
 		    panel = new JPanel(new GridLayout(0, 1));
@@ -191,13 +194,15 @@ public class DrawPanel extends JPanel {
 		    m4.addActionListener(popupconfig4());
 		    m5.addActionListener(popupconfig5());
 		    m6.addActionListener(popupconfig6());
+		    m7.addActionListener(popupconfig7());
 		    	    
 		    popup.add(m1);
 		    popup.add(m2);	
 		    popup.add(m3);
 		    popup.add(m4);	
 		    popup.add(m5);	
-		    popup.add(m6);			    
+		    popup.add(m6);
+		    popup.add(m7);				    
 		    //fim menu popup
 		}
 		
@@ -258,6 +263,7 @@ public class DrawPanel extends JPanel {
 	public ActionListener popupconfig1(){
 			return new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
+		        	System.out.println("pop1");
 					arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
 					if(arquivoPath!=null){
 		        		videoAtualpopup.video=arquivoPath;
@@ -293,12 +299,15 @@ public class DrawPanel extends JPanel {
 	        		JOptionPane.showMessageDialog(null, "Selecione um video antes para depois extrair um trecho do video escolhido", "Erro", JOptionPane.INFORMATION_MESSAGE);
 	        		return;
 	        	}else{
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(configTeclado);
+	        		
 	        		int result = JOptionPane.showConfirmDialog(null, panel, "Extrair intervalo",
 		        	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         	        
 	        		if (result == JOptionPane.OK_OPTION) {
-        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortar(field1.getText(), /*field2.getText()*/somarDuracoes(new String[]{field1.getText(),field2.getText()}), videoAtualpopup.video));
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortar(field1.getText(), field2.getText()/*somarDuracoes(new String[]{field1.getText(),field2.getText()})*/, videoAtualpopup.video,true));
         	        }
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(configTeclado);
 	        	}	        	
 	        }
 	    };
@@ -386,17 +395,57 @@ public class DrawPanel extends JPanel {
 	        	}	        	
 	        }
 	    };
+	}
+	public ActionListener popupconfig7(){
+		return new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	if(videoAtualpopup.video==null){
+	        		JOptionPane.showMessageDialog(null, "Selecione um video antes para depois remover um trecho do video escolhido", "Erro", JOptionPane.INFORMATION_MESSAGE);
+	        		return;
+	        	}else{
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(configTeclado);
+	        		
+	        		int result = JOptionPane.showConfirmDialog(null, panel, "Remover intervalo",
+		        	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        	        
+	        		if (result == JOptionPane.OK_OPTION) {
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortarJ("1","00:00:00.0", /*field2.getText()*/field1.getText(), videoAtualpopup.video,true));
+
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortarJ("2",field2.getText(), "", videoAtualpopup.video,false));
+        	        	
+        	        	String extensao=IntegracaoBasicaFFmpeg.getExtensaoVideo(videoAtualpopup.video);
+        	        	String pasta=videoAtualpopup.video.substring(0,videoAtualpopup.video.lastIndexOf('\\'))+"\\";
+        	        	
+        	        	String enderecoVideo=pasta+"1"+extensao, enderecoVideo2=pasta+"2"+extensao;
+        				String arquivotxtenderecos="file '"+enderecoVideo+"'\r\nfile '"+enderecoVideo2+"\'";
+        				salvarTxt(pasta+"tempEnderecos.txt", arquivotxtenderecos);
+        				JOptionPane.showMessageDialog(null, "O video foi separado em dois,\r\nse o programa terminou de executar o ffmpeg para separar confirme", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.juntar(enderecoVideo));
+
+//        	            File f = new File("tempEnderecos.txt");
+//        	            f.delete();
+	        		}
+
+	        		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(configTeclado);
+	        		
+	        	}	        	
+	        }
+	    };
 	}	
 	//fim popup config
 		
 	//configs
 	//config teclado
-	final KeyEventDispatcher configTeclado = new KeyEventDispatcher() {
+	KeyEventDispatcher configTeclado = new KeyEventDispatcher() {
 		@Override
 		public boolean dispatchKeyEvent(KeyEvent e) {
 			synchronized (PaintSurface.class) {
-				if(e.getID()==KeyEvent.KEY_RELEASED)
-					executarAcao(Character.toLowerCase((char)e.getKeyCode()));
+				if(e.getID()==KeyEvent.KEY_RELEASED){
+					int keyCode= e.getKeyCode();
+					if(keyCode<'Z'+1)executarAcao(Character.toLowerCase((char)keyCode));
+//					System.out.println((char)e.getKeyCode()+" "+e.getKeyCode()+" "+Character.toLowerCase((char)e.getKeyCode()));
+				}
+					
 				return false;
 			}
 		}
@@ -419,6 +468,8 @@ public class DrawPanel extends JPanel {
 				break;
 				
 				case ('a')://inserir audio
+
+		        	System.out.println("pop a");
 					arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
 					if(arquivoPath!=null)
 //					if(selecionarVideo.showOpenDialog(videoAtualpopup)==JFileChooser.APPROVE_OPTION)
@@ -428,6 +479,8 @@ public class DrawPanel extends JPanel {
 				case ('b'):
 					booleanBackgroundImage=true;
 				//reusei o jfile do video
+
+	        	System.out.println("pop b");
 				arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
 					if(arquivoPath!=null){
 						try {
@@ -587,63 +640,63 @@ public class DrawPanel extends JPanel {
 	}
 	
 	
-	public String somarDuracoes(String time[]){
-	        int hours = 0, minutes = 0, seconds = 0, miliseconds=0;
-	        int valores[][] = new int[2][4];
-	        int indice=0;
-	        for (String string : time) {
-	            String temp[] = string.split(":");
-	            valores[indice][0]=Integer.valueOf(temp[0]);
-	            valores[indice][1]=Integer.valueOf(temp[1]);
-//	            hours = hours - Integer.valueOf(temp[0]);
-//	            minutes = minutes - Integer.valueOf(temp[1]);
-	            
-	            String splitSegundos[] = temp[2].split("\\.");
-//	            seconds = seconds - Integer.valueOf(splitSegundos[0]);
-	            valores[indice][2]=Integer.valueOf(splitSegundos[0]);
-	            valores[indice][3]=Integer.valueOf(splitSegundos[1]);
-//	            miliseconds = miliseconds - Integer.valueOf(splitSegundos[1]);
-	            indice++;
-	            
-	        }
-	        hours = valores[1][0] - valores[0][0];
-	        minutes = valores[1][1] - valores[0][1];
-	        seconds =  valores[1][2] - valores[0][2];
-	        miliseconds =  valores[1][3] - valores[0][3];
-	        System.out.println(hours + ":" + minutes + ":" + seconds + "." +miliseconds);
-	        if (miliseconds == 60) {
-	            seconds = seconds + 1;
-	            miliseconds = 0;
-	        } else if (miliseconds > 59) {
-	            seconds = seconds + (miliseconds / 60);
-	            miliseconds = miliseconds % 60;
-	        }
-	        
-	        System.out.println(hours + ":" + minutes + ":" + seconds);
-	        if (seconds == 60) {
-	            minutes = minutes + 1;
-	            seconds = 0;
-	        } else if (seconds > 59) {
-	            minutes = minutes + (seconds / 60);
-	            seconds = seconds % 60;
-	        }
-	        System.out.println(hours + ":" + minutes + ":" + seconds);
-	        if (minutes == 60) {
-	            hours = hours + 1;
-	            minutes = 0;
-	        } else if (minutes > 59) {
-	            hours = hours + (minutes / 60);
-	            minutes = minutes % 60;
-	        }
-	        System.out.println(hours + ":" + minutes + ":" + seconds);
-	        String output = "";
-	        output = String.valueOf(String.format("%02d", hours));
-	        output = output.concat(":" + (String.format("%02d", minutes)));
-	        output = output.concat(":" + (String.format("%02d", seconds)));
-	        output = output.concat("." + (String.format("%01d", miliseconds)));
-	        System.out.println(output);
-	        return output;
-	}
+//	public String somarDuracoes(String time[]){
+//	        int hours = 0, minutes = 0, seconds = 0, miliseconds=0;
+//	        int valores[][] = new int[2][4];
+//	        int indice=0;
+//	        for (String string : time) {
+//	            String temp[] = string.split(":");
+//	            valores[indice][0]=Integer.valueOf(temp[0]);
+//	            valores[indice][1]=Integer.valueOf(temp[1]);
+////	            hours = hours - Integer.valueOf(temp[0]);
+////	            minutes = minutes - Integer.valueOf(temp[1]);
+//	            
+//	            String splitSegundos[] = temp[2].split("\\.");
+////	            seconds = seconds - Integer.valueOf(splitSegundos[0]);
+//	            valores[indice][2]=Integer.valueOf(splitSegundos[0]);
+//	            valores[indice][3]=Integer.valueOf(splitSegundos[1]);
+////	            miliseconds = miliseconds - Integer.valueOf(splitSegundos[1]);
+//	            indice++;
+//	            
+//	        }
+//	        hours = valores[1][0] - valores[0][0];
+//	        minutes = valores[1][1] - valores[0][1];
+//	        seconds =  valores[1][2] - valores[0][2];
+//	        miliseconds =  valores[1][3] - valores[0][3];
+//	        System.out.println(hours + ":" + minutes + ":" + seconds + "." +miliseconds);
+//	        if (miliseconds == 60) {
+//	            seconds = seconds + 1;
+//	            miliseconds = 0;
+//	        } else if (miliseconds > 59) {
+//	            seconds = seconds + (miliseconds / 60);
+//	            miliseconds = miliseconds % 60;
+//	        }
+//	        
+//	        System.out.println(hours + ":" + minutes + ":" + seconds);
+//	        if (seconds == 60) {
+//	            minutes = minutes + 1;
+//	            seconds = 0;
+//	        } else if (seconds > 59) {
+//	            minutes = minutes + (seconds / 60);
+//	            seconds = seconds % 60;
+//	        }
+//	        System.out.println(hours + ":" + minutes + ":" + seconds);
+//	        if (minutes == 60) {
+//	            hours = hours + 1;
+//	            minutes = 0;
+//	        } else if (minutes > 59) {
+//	            hours = hours + (minutes / 60);
+//	            minutes = minutes % 60;
+//	        }
+//	        System.out.println(hours + ":" + minutes + ":" + seconds);
+//	        String output = "";
+//	        output = String.valueOf(String.format("%02d", hours));
+//	        output = output.concat(":" + (String.format("%02d", minutes)));
+//	        output = output.concat(":" + (String.format("%02d", seconds)));
+//	        output = output.concat("." + (String.format("%01d", miliseconds)));
+//	        System.out.println(output);
+//	        return output;
+//	}
 	
 	//resize imagem de fundo
 	public static BufferedImage ajustarTamanho(BufferedImage img, int newW, int newH) {  
