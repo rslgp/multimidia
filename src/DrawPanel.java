@@ -409,7 +409,9 @@ public class DrawPanel extends JPanel {
 		        	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         	        
 	        		if (result == JOptionPane.OK_OPTION) {
-        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortarJ("1","00:00:00.0", /*field2.getText()*/field1.getText(), videoAtualpopup.video,true));
+	        			String parametroTo=field1.getText();
+	        			if(parametroTo.equalsIgnoreCase("00:00:00.0")) parametroTo="00:00:00.01"; //gambiarra
+        	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortarJ("1","00:00:00.0", /*field2.getText()*/parametroTo, videoAtualpopup.video,true));
 
         	        	IntegracaoBasicaFFmpeg.executarFFmpeg(IntegracaoBasicaFFmpeg.cortarJ("2",field2.getText(), "", videoAtualpopup.video,false));
         	        	
