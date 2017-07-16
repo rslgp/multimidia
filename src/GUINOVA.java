@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -18,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
-import javax.swing.JLabel;
 
 public class GUINOVA extends JFrame {
 	private JPanel contentPane;
@@ -146,9 +146,15 @@ public class GUINOVA extends JFrame {
 		//selecionar imagem referencia
 		JButton botaoBackground = new JButton("<html>Imagem de<br>Refer\u00EAncia");
 		botaoBackground.addActionListener(configAcao('b'));
-		botaoBackground.setBounds(10, 130, 90, 43);
+		botaoBackground.setBounds(10, 130, 109, 43);
 		contentPane.add(botaoBackground);	
 		//fim imagem referencia
+		
+
+		JButton botaoFullscreen = new JButton("<html>Video on<br>Fullscreen");
+		botaoFullscreen.addActionListener(configAcao('f'));
+		botaoFullscreen.setBounds(10, 191, 109, 43);
+		contentPane.add(botaoFullscreen);
 		
 		//configurar selecao de resolucoes
 		
@@ -156,7 +162,7 @@ public class GUINOVA extends JFrame {
 		DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(resolucoes);		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "<html>Resolu\u00E7\u00E3o do<br>v\u00EDdeo resultado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 184, 102, 123);
+		panel.setBounds(10, 269, 102, 123);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		resolucoesList = new JComboBox(comboModel);

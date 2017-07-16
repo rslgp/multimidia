@@ -29,11 +29,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -61,10 +61,12 @@ public class DrawPanel extends JPanel {
 	private class VideoBox extends JComponent{
 		public Polygon shape;
 		public int id;
+		public boolean isFullscreen;
 		public String video;
 		public VideoBox(Polygon shape, int id){
 			this.shape=shape;
 			this.id=id;
+			isFullscreen=false;
 		}
 		
 //		void determineDuration(){
@@ -100,6 +102,8 @@ public class DrawPanel extends JPanel {
 		boolean wantDraw=true;
 		private int id=1;
 		
+		private Font fontePadrao = new Font("Arial", 0, 18);
+				
 		private String arquivoPath;
 //		private final JFileChooser selecionarVideo = new JFileChooser();
 		private final File workingDirectory = new File(System.getProperty("user.dir"));
@@ -208,9 +212,16 @@ public class DrawPanel extends JPanel {
 		
 		//desenhar
 		public void desenharQuadradoColorido(int x1, int y1, int x2, int y2){
+			if((Math.abs((x2-x1)*(y2-y1))<400))return; //tamanho minimo para permitir deletar
 			Polygon r = makeRectangle(x1, y1, x2, y2);
 			VideoBox r2 = new VideoBox(r,id++);
+
+			//fazer com q os numeros menores fiquem por tras dos maiores
+			Collections.reverse(shapes);
+			
 			shapes.add(r2);
+			//fazer com q os numeros menores fiquem por tras dos maiores
+			Collections.reverse(shapes);
 			startDrag = null;
 			endDrag = null;
 			repaint();
@@ -274,6 +285,8 @@ public class DrawPanel extends JPanel {
 		        }
 		    };
 	}	
+	
+	//deletar retangulo
 	public ActionListener popupconfig2(){
 		return new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -496,6 +509,43 @@ public class DrawPanel extends JPanel {
 					}
 				break;
 				
+				case ('f'):			
+					
+					if(!shapes.isEmpty()){
+						for(VideoBox s:shapes){
+							if(s.isFullscreen){
+								shapes.remove(s);
+					        	
+					        	for(VideoBox s2:shapes){
+					        		if(s2.id>s.id){
+					        			s2.id--;
+					        		}
+					        	}
+					        	id--;
+					        	repaint();
+					        	return;
+							}
+						}
+					}
+		        	
+		        
+					arquivoPath = VariavelGlobal.selecionarArquivo(configTeclado);
+					if(arquivoPath==null)return;
+					
+					Polygon r = makeRectangle(0, 0, VariavelGlobal.limitadorVermelhoX, VariavelGlobal.limitadorVermelhoY);
+					VideoBox r2 = new VideoBox(r,1);
+					r2.isFullscreen=true;
+					r2.video = arquivoPath;
+					
+					//atualizar existentes
+					if(shapes.size()!=0) for(VideoBox s: shapes) s.id++;
+					id++;
+					
+					shapes.add(0,r2);
+					repaint();
+					
+				break;
+				
 				case ('r'):
 					if(VariavelGlobal.selecionouAoMenosUmVideo){
 						String[] enderecoVideos = new String[id-1];
@@ -534,16 +584,18 @@ public class DrawPanel extends JPanel {
 			wantDraw=true;
 			for(VideoBox s : shapes) {
 				if (s.shape.contains(e.getPoint())) {//check if mouse is clicked within shape
-					wantDraw=false;
-					System.out.println("Clicked a "+s.id);
-					dragged = s.shape;
-					lastLocation = e.getPoint();
-					
-					if(e.getButton()==e.BUTTON3){
-						videoAtualpopup=s;
-						popup.show(e.getComponent(), e.getX(), e.getY());
-					}			
-					return;//ja entendi o q ele quer nao preciso ver os outros, sair
+					if(s.isFullscreen==false){
+						wantDraw=false;
+						System.out.println("Clicked a "+s.id);
+						dragged = s.shape;
+						lastLocation = e.getPoint();
+						
+						if(e.getButton()==e.BUTTON3){
+							videoAtualpopup=s;
+							popup.show(e.getComponent(), e.getX(), e.getY());
+						}			
+						return;//ja entendi o q ele quer nao preciso ver os outros, sair
+					}
 				}
 			}
 			
@@ -600,10 +652,11 @@ public class DrawPanel extends JPanel {
 			for (VideoBox s : shapes) {
 				tela.setPaint(Color.BLACK);
 				tela.draw(s.shape);
-				tela.setPaint(colors[(colorIndex++) % qtdCores]);
+				if(s.isFullscreen)tela.setPaint(new Color(0,0,0,0.0f));
+				else tela.setPaint(colors[s.id % qtdCores]);
 				tela.fill(s.shape);
 				
-				desenharTextoCentral(g, s.id+"", s.shape, new Font("Arial", 0, 18));
+				desenharTextoCentral(g, s.id+"", s.shape, fontePadrao);
 			}
 	
 			if (startDrag != null && endDrag != null) { //pintar contornado
