@@ -1,4 +1,5 @@
-﻿#Projeto de Multimidia
+for 32bit machines(x86) replace ffmpeg.exe for this ffmpeg 32bit <a href="http://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.3.3-win32-static.zip">ffmpeg-32bit</a><br><br>
+#Projeto de Multimidia
 Programa para gerar um video reproduzindo varios videos simultaneos em certa moldura, usando ffmpeg
 
 ##Tecnologias usadas:
