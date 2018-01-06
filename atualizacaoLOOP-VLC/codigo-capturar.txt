@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <math.h>
+
+using namespace std;
+
+
+double prox(double f)
+{
+    return floor(f * 5 + 0.5) / 5;
+    // return std::round(f * 5) / 5; // C++11
+}
+
+int main(int argc, char* argv[])
+{
+    ifstream myReadFile;
+ myReadFile.open(argv[1]);
+ string output;
+ char tempoAtual[100];
+ string busca = "elst", ms="ms";
+ int contador=6;
+ double resultado=0;
+
+ std::size_t pos=0;
+ if (myReadFile.is_open()) {
+ while (!myReadFile.eof()) {
+
+
+    myReadFile >> output;
+    pos=output.find(busca);
+    if(pos!=std::string::npos){
+    	contador=0;
+    }
+
+   	if(contador==5){
+    	pos=output.find(ms);
+	    if(pos!=std::string::npos)
+	   		resultado=prox( stod( output.substr(0,output.length()-2) )/1000 );
+   	}
+   	
+    contador++;
+    
+    
+
+
+ }
+ cout<<resultado<<endl;
+}
+myReadFile.close();
+return 0;
+}
