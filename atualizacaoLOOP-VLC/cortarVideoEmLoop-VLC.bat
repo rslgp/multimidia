@@ -1,7 +1,7 @@
 @echo off
 del vlc-log.txt > nul
 set /p "video=arraste o video: "
-start "" vlc --extraintf=http:logger --verbose=2 --file-logging --logfile=vlc-log.txt %video%
+start "" %ProgramFiles%\VideoLAN\VLC\vlc.exe --extraintf=http:logger --verbose=2 --file-logging --logfile=vlc-log.txt %video%
 set /a "numero=1"
 echo.
 echo aperte enter apos pausar no tempo inicial e final do corte no video reproduzido no vlc
